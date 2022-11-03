@@ -10,7 +10,7 @@
 
 ## Creating a keyboard shortcut to reload
 
-Add the following to bind `prefix + r` to reload the `.tmux.conf` in the home
+Add the following to bind `prefix + r` to reload the `.tmux.conf` file in the home
 directory
 
 ```
