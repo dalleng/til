@@ -16,7 +16,7 @@ https://github.com/jazzband/django-debug-toolbar
 
 Silk intercepts and stores HTTP requests and database queries before presenting them in a user interface for further inspection. Very useful to debug Ajax calls and APIs.
 
-The only con of this project is that it stores http requests and queries in the DB, which can make the application slower.
+The only con of this project is that it stores http requests and queries in the DB, which can make the application slower if enabled on prod. Of course, an option would be to only enable it on development environments.
 
 https://github.com/jazzband/django-silk
 
