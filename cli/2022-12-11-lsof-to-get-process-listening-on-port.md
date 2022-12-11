@@ -1,4 +1,4 @@
-# Lsof to get the process listening on given port
+# Lsof to get the process listening on a given port
 
 To show all networking related to a given port:
 
