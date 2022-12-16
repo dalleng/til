@@ -5,8 +5,9 @@ Enable interactive mode by adding the following lines to the service definition:
 ```yaml
 version: 3
 services:
-    stdin_open: true
-    tty: true
+    app:
+        stdin_open: true
+        tty: true
 ```
 
 Run docker-compose detached with `docker-compose up -d` and attach to the container you set
