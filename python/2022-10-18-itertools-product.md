@@ -1,6 +1,6 @@
-# `itertools.product` to calculate the carthesian products of input iterables
+# `itertools.product` to calculate the cartesian products of input iterables
 
-![Visual representation of the carthesian product of two sets](../img/carthesian-product.png)
+![Visual representation of the cartesian product of two sets](../img/carthesian-product.png)
 
 ```python
 >>> import itertools
