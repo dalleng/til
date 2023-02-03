@@ -2,7 +2,7 @@
 
 - Destructure
 
-```nodejs
+```javascript
 > const profile = { 'first_name': 'John', 'last_name': 'Doe' }
 undefined
 > const { first_name, last_name } = profile;
@@ -15,7 +15,7 @@ undefined
 
 - Destructure and renaming
 
-```nodejs
+```javascript
 > const profile = { 'first_name': 'John', 'last_name': 'Doe' }
 undefined
 > const { first_name: name, last_name: lastname } = profile;
@@ -26,4 +26,4 @@ undefined
 'Doe'
 ```
 
-(Source)[https://wesbos.com/destructuring-renaming]
+[Source](https://wesbos.com/destructuring-renaming)
