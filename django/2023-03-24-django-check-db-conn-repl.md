@@ -3,14 +3,14 @@
 When connected to a Django shell, after executing `python manage.py shell`. You can execute the following snippet
 to obtain the DB connection settings.
 
-```
+```python
 from django.db import connection
 print(connection.settings_dict)
 ```
 
 which is going to return a dictionary similar to this one:
 
-```
+```python
 {'ENGINE': 'django.db.backends.postgresql',
  'HOST': 'localhost',
  'NAME': '************',
