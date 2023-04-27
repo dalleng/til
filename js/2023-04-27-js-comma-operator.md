@@ -9,7 +9,7 @@ x = (1, 2, 4);
 console.log(x); // prints 4
 ```
 
-Can be very useful to quickly debug arrow functions not surrounded by brackets. For example.
+Can be very useful to quickly debug arrow functions not surrounded by brackets. For example, check the following JSX example.
 
 ```jsx
 function InputWrapper() {
