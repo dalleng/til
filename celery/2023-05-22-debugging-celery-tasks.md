@@ -20,4 +20,4 @@ To attach to the process running the task and use the debugger, run the followin
 $ telnet localhost 6900
 ```
 
-(Source)[https://docs.celeryq.dev/en/stable/userguide/debugging.html#basics]
+[Source](https://docs.celeryq.dev/en/stable/userguide/debugging.html#basics)
