@@ -18,5 +18,5 @@ let todo: TodoPreview = {
 };
 ```
 
-In more detail: Pick<T, K extends keyof T> is a generic that takes two type arguments. T is the type from which you want
-to pick properties. K is the properties you want to pick from T.
+In more detail: `Pick<T, K extends keyof T>` is a generic that takes two type arguments. `T` is the type from which you want
+to pick properties. `K` is the properties you want to pick from `T`.
