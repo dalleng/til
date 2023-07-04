@@ -1,7 +1,7 @@
 # Nullish coalescing operator (??)
 
 Returns the value on the right hand side if the value on the left hand side is `null` or `undefined`. Useful
-when you need to choose between a provided value or a default, but falsy values like `0` or `null` are valid
+when you need to choose between a provided value or a default, but falsy values like `0` or `''` are valid
 options.
 
 ```nodejs
