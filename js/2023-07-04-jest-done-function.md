@@ -2,7 +2,7 @@
 
 The `done` function can be useful for testing asynchronous code. Whenever `done` is passed to a test function, jest will
 wait for `done` to be called before finishing the test or fail the test with a timeout error if `done` was
-not called after.
+not called after a certain amount of time.
 
 See the following example, in this case the test will finish before the callback is executed.
 
