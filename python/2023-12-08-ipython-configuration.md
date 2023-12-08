@@ -17,4 +17,4 @@ ipython profile create
 c.AliasManager.user_aliases = [("cl", "clear")]
 ```
 
-(Docs)[https://ipython.readthedocs.io/en/stable/config/intro.html]
+[Docs](https://ipython.readthedocs.io/en/stable/config/intro.html)
