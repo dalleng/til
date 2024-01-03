@@ -8,7 +8,7 @@ SSH agent forwarding allows you to use private keys stored locally on a remote s
 
 `ssh-add ~/.ssh/id_rsa`
 
-on macOS it is advised to use `-K` to save it on the Keychain, otherwise this settings isn't persisted
+on macOS it is advised to use `-K` to save it on the Keychain, otherwise this setting isn't persisted
 through reboots.
 
 ### Allow forwarding in your client's config.
