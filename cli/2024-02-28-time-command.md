@@ -18,5 +18,5 @@ What does `real`, `user` and `sys` mean?
 
 - Sys is the amount of CPU time spent in the kernel within the process. This means executing CPU time spent in system calls within the kernel, as opposed to library code, which is still running in user-space. Like 'user', this is only CPU time used by the process. See below for a brief description of kernel mode (also known as 'supervisor' mode) and the system call mechanism.
 
-(Source)[https://stackoverflow.com/a/556411/238365]
+[Source](https://stackoverflow.com/a/556411/238365)
 
