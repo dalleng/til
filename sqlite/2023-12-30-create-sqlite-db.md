@@ -4,8 +4,8 @@ SQLite comes with a cli tool called `sqlite3`, you can create a db by executing:
 
 `sqlite3 test.db`
 
-After executing, you will enter a command prompt in which you can enter SQL (terminated by ;). To terminate the sqlite3
-program type your system End-Of-File character (usually a Control-D).
+After executing, you will enter a command prompt in which you can enter SQL (terminated by `;`). To terminate the sqlite3
+program type your system's End-Of-File character (usually Control-D).
 
 ## Initialize a database with a SQL script
 
