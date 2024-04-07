@@ -1,4 +1,4 @@
-# `python manaage.py sqlmigrate`
+# `python manage.py sqlmigrate`
 
 To print the SQL that will be executed for a given migration, use:
 
