@@ -33,7 +33,7 @@ In [8]: attrgetter('job.company_name')(p)
 Out[8]: 'Foo Inc.'
 ```
 
- It can be used to build a nested version of (getattr)[https://docs.python.org/3/library/functions.html#getattr].
+ It can be used to build a nested version of [getattr](https://docs.python.org/3/library/functions.html#getattr).
 
 ```python
 from operator import attrgetter
