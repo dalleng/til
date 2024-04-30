@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	fmt.Println(strings.Repeat("foobar", 2))
+	fmt.Println(strings.Repeat("foobar", 2)) // prints foobarfoobar
 }
 ```
 
