@@ -17,7 +17,7 @@ lsof -P -i :port
 all TCP connections opened by process with process id `<pid>`. 
 
 `-a` makes
-all conditions specified by the different flags be ANDed. IN 
+all conditions specified by the different flags be ANDed.
 
 ```bash
 lsof -i TCP -P -a -p <pid>
