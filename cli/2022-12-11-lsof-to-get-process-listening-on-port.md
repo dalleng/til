@@ -7,8 +7,18 @@ lsof -i TCP:port # port with specified protocol
 lsof -i :22
 ```
 	
--P disables port aliasing. Will show <HOST>:80 instead of <HOST>:http
+`-P` disables port aliasing. Will show <HOST>:80 instead of <HOST>:http
 
 ```bash
 lsof -P -i :port
+```
+
+`-p` lets you specify a given pid. In the following example, we would get
+all TCP connections opened by process with process id `<pid>`. 
+
+`-a` makes
+all conditions specified by the different flags be ANDed. IN 
+
+```bash
+lsof -i TCP -P -a -p <pid>
 ```
