@@ -3,7 +3,7 @@
 The `Pick` generic allows you to create a new type based on a subset of keys of an existing type. In the example below,
 the `TodoPreview` type includes the `title` and `completed` keys from the `Todo` interface, but not `description`.
 
-```
+```typescript
 interface Todo {
     title: string;
     description: string;
