@@ -3,6 +3,7 @@ import markdown
 import os
 from glob import glob
 from pathlib import Path
+from pygments.formatters import HtmlFormatter
 
 
 OUTPUT_FOLDER = "site"
@@ -43,6 +44,12 @@ def generate_html_files(markdown_files: list[str]):
         md.reset()
 
 
+def generate_css(style_name: str, output_filepath: str):
+    formatter = HtmlFormatter(style=style_name)
+    with open(output_filepath, "w") as f:
+        f.write(formatter.get_style_defs(".codehilite"))
+
+
 def main():
     args = parse_args()
     print(f"{args=}")
@@ -53,6 +60,7 @@ def main():
         markdown_files = glob("**/*.md", recursive=True)
 
     generate_html_files(markdown_files)
+    generate_css("default", str(Path(OUTPUT_FOLDER) / "style.css"))
 
 
 if __name__ == "__main__":
