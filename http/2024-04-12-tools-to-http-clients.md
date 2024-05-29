@@ -2,7 +2,7 @@
 
 ## Test responses with different status codes
 
-[httpstat.us]https://httpstat.us/)
+[httpstat.us](https://httpstat.us/)
 
 ## Test different HTTP verbs, responses, auth, etc.
 
