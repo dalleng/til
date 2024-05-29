@@ -98,7 +98,10 @@ def generate_html_files(markdown_files: list[str]):
         )
         md.reset()
 
+
+def generate_index(markdown_files: list[str]):
     # Generate index.html
+    tils = [TILNote(mf) for mf in markdown_files]
     tils.sort(reverse=True)
     body_template = Template("<ul>{list_content}</ul>")
     list_item_template = Template(
@@ -113,6 +116,7 @@ def generate_html_files(markdown_files: list[str]):
         ]
     )
     body_content = body_template.render(dict(list_content=list_content))
+    template = Template.from_file(INPUT_FOLDER / "base_template.html")
     template.write_to_file(ROOT_DIR / "index.html", dict(head_content="", body_content=body_content))
 
 
@@ -128,20 +132,22 @@ def main():
 
     try:
         output_filepath = str(OUTPUT_FOLDER)
-        print(f"Trying to create output folder: {output_filepath}")
+        print(f"Creating output folder: {output_filepath}")
         os.mkdir(output_filepath)
     except FileExistsError:
         print("Output folder alredy exists")
         pass
 
     generate_css("default", OUTPUT_FOLDER / "styles.css")
+    all_markdown_files = glob("**/*.md", recursive=True)
 
     if args.files:
         markdown_files = args.files
     else:
-        markdown_files = glob("**/*.md", recursive=True)
+        markdown_files = all_markdown_files
 
     generate_html_files(markdown_files)
+    generate_index(all_markdown_files)
 
 
 if __name__ == "__main__":
