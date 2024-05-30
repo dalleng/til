@@ -1,6 +1,8 @@
 import re
 import argparse
 from dataclasses import dataclass
+import shutil
+from unicodedata import category
 import markdown
 import os
 from glob import glob
@@ -11,6 +13,9 @@ from pygments.formatters import HtmlFormatter
 ROOT_DIR = Path().parent
 INPUT_FOLDER = ROOT_DIR / "site-gen"
 OUTPUT_FOLDER = ROOT_DIR / "site"
+SYNTAX_HIGHLIGHTING_CSS = "highlighting.css"
+BASE_HTML_TEMPLATE = "base_template.html"
+BASE_CSS_STYLES = "base_styles.css"
 
 
 @dataclass(order=True)
@@ -82,7 +87,7 @@ def generate_html_files(markdown_files: list[str]):
     # Generate html files for each markdown file
     tils = []
     md = markdown.Markdown(extensions=["fenced_code", "codehilite"])
-    template = Template.from_file(INPUT_FOLDER / "base_template.html")
+    template = Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE)
 
     for filepath in markdown_files:
         til = TILNote(filepath)
@@ -92,7 +97,7 @@ def generate_html_files(markdown_files: list[str]):
         output_filename = OUTPUT_FOLDER / f"{til.filename}.html"
         print(f"Output: {output_filename}")
 
-        head_content = '<link rel="stylesheet" href="styles.css"/>'
+        head_content = f'<link rel="stylesheet" href="{SYNTAX_HIGHLIGHTING_CSS}" />'
         template.write_to_file(
             output_filename, dict(head_content=head_content, body_content=html)
         )
@@ -105,19 +110,27 @@ def generate_index(markdown_files: list[str]):
     tils.sort(reverse=True)
     body_template = Template("<ul>{list_content}</ul>")
     list_item_template = Template(
-        '<li><a href="{url}">{title}</a> - <small>{created_at}</small></li>'
+        '<li><span class="tag">{category}</span> <a href="{url}">{title}</a> - <small>{created_at}</small></li>'
     )
     list_content = "\n".join(
         [
             list_item_template.render(
-                dict(url=til.url, title=til.title, created_at=til.created_at)
+                dict(url=til.url, title=til.title, created_at=til.created_at, category=til.category)
             )
             for til in tils
         ]
     )
     body_content = body_template.render(dict(list_content=list_content))
-    template = Template.from_file(INPUT_FOLDER / "base_template.html")
-    template.write_to_file(ROOT_DIR / "index.html", dict(head_content="", body_content=body_content))
+    template = Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE)
+
+    # copy 'base_styles.css' from ./site-gen to ./site
+    shutil.copy(INPUT_FOLDER / BASE_CSS_STYLES, OUTPUT_FOLDER)
+    head_content = f'<link rel="stylesheet" href="site/{BASE_CSS_STYLES}" />'
+
+    template.write_to_file(
+        ROOT_DIR / "index.html",
+        dict(head_content=head_content, body_content=body_content),
+    )
 
 
 def generate_css(style_name: str, filename: Path):
@@ -138,7 +151,7 @@ def main():
         print("Output folder alredy exists")
         pass
 
-    generate_css("default", OUTPUT_FOLDER / "styles.css")
+    generate_css("default", OUTPUT_FOLDER / SYNTAX_HIGHLIGHTING_CSS)
     all_markdown_files = glob("**/*.md", recursive=True)
 
     if args.files:

@@ -1,0 +1,12 @@
+ul li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.tag {
+    border: 1px solid black;
+    background-color: var(--pico-primary);
+    padding: 4px;
+    font-size: 11px;
+    color: white;
+}
