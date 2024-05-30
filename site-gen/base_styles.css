@@ -10,3 +10,7 @@ ul li {
     font-size: 11px;
     color: white;
 }
+
+ul {
+  padding-left: 0px;
+}

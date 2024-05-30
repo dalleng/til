@@ -2,7 +2,6 @@ import re
 import argparse
 from dataclasses import dataclass
 import shutil
-from unicodedata import category
 import markdown
 import os
 from glob import glob
@@ -16,6 +15,7 @@ OUTPUT_FOLDER = ROOT_DIR / "site"
 SYNTAX_HIGHLIGHTING_CSS = "highlighting.css"
 BASE_HTML_TEMPLATE = "base_template.html"
 BASE_CSS_STYLES = "base_styles.css"
+INDEX_TEMPLATE = "index_template.html"
 
 
 @dataclass(order=True)
@@ -108,26 +108,33 @@ def generate_index(markdown_files: list[str]):
     # Generate index.html
     tils = [TILNote(mf) for mf in markdown_files]
     tils.sort(reverse=True)
-    body_template = Template("<ul>{list_content}</ul>")
+    list_template = Template("<ul>{list_content}</ul>")
     list_item_template = Template(
         '<li><span class="tag">{category}</span> <a href="{url}">{title}</a> - <small>{created_at}</small></li>'
     )
     list_content = "\n".join(
         [
             list_item_template.render(
-                dict(url=til.url, title=til.title, created_at=til.created_at, category=til.category)
+                dict(
+                    url=til.url,
+                    title=til.title,
+                    created_at=til.created_at,
+                    category=til.category,
+                )
             )
             for til in tils
         ]
     )
-    body_content = body_template.render(dict(list_content=list_content))
-    template = Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE)
+    main_content = list_template.render(dict(list_content=list_content))
+    body_content = Template.from_file(INPUT_FOLDER / INDEX_TEMPLATE).render(
+        data=dict(main_content=main_content)
+    )
 
     # copy 'base_styles.css' from ./site-gen to ./site
     shutil.copy(INPUT_FOLDER / BASE_CSS_STYLES, OUTPUT_FOLDER)
     head_content = f'<link rel="stylesheet" href="site/{BASE_CSS_STYLES}" />'
 
-    template.write_to_file(
+    Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE).write_to_file(
         ROOT_DIR / "index.html",
         dict(head_content=head_content, body_content=body_content),
     )
