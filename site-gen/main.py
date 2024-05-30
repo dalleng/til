@@ -105,7 +105,7 @@ def generate_index(markdown_files: list[str]):
     tils.sort(reverse=True)
     body_template = Template("<ul>{list_content}</ul>")
     list_item_template = Template(
-        '<li><a href="{url}">{title}</a> <span>{created_at}</span></li>'
+        '<li><a href="{url}">{title}</a> - <small>{created_at}</small></li>'
     )
     list_content = "\n".join(
         [
