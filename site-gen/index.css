@@ -17,3 +17,9 @@ ul {
     background-color: var(--pico-primary);
     color: white;
 }
+
+@media (prefers-color-scheme: dark) {
+  section .tag {
+    border: 1px solid white;
+  }
+}
