@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Using the <code>as</code> operator for mocks in jest tests</h1>
+<p>When using mocks or spys, and trying to call methods on those, typescript complains that the methods do not exists for those types.</p>
+<p>The following can be fixed by forcing typescript to treat those objects as <code>jest.Mock</code> or <code>jest.SpyInstance</code> using the <code>as</code> operator.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;a/package&#39;</span><span class="p">;</span>
+
+<span class="nx">jest</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">&#39;a/package&#39;</span><span class="p">);</span>
+
+<span class="c1">// Otherwise TS would throw an error saying mockReturnValue does not exits</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">Mock</span><span class="p">;</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">mockReturnValue</span><span class="p">(</span><span class="s1">&#39;some value&#39;</span><span class="p">);</span><span class="w"> </span>
+
+<span class="c1">// For spies you can use</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mySpy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">spyOn</span><span class="p">(</span><span class="nx">someObject</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;someMethod&#39;</span><span class="p">)</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">jest</span><span class="p">.</span><span class="nx">SpyInstance</span><span class="p">;</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>

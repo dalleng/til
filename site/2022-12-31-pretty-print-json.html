@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Pretty print JSON</h1>
+<p><code>json.dumps</code> takes an optional keyword argument <code>indent</code> that makes the output string indented
+at the level specified by the value passed.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;jazz&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;car&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;bazz&#39;</span><span class="p">:</span> <span class="s1">&#39;fuzz&#39;</span><span class="p">}]}]}</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="s1">&#39;{</span><span class="se">\n</span><span class="s1">  &quot;foo&quot;: &quot;bar&quot;,</span><span class="se">\n</span><span class="s1">  &quot;jazz&quot;: [</span><span class="se">\n</span><span class="s1">    {</span><span class="se">\n</span><span class="s1">      &quot;car&quot;: [</span><span class="se">\n</span><span class="s1">        {</span><span class="se">\n</span><span class="s1">          &quot;bazz&quot;: &quot;fuzz&quot;</span><span class="se">\n</span><span class="s1">        }</span><span class="se">\n</span><span class="s1">      ]</span><span class="se">\n</span><span class="s1">    }</span><span class="se">\n</span><span class="s1">  ]</span><span class="se">\n</span><span class="s1">}&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="s2">&quot;foo&quot;</span><span class="p">:</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;jazz&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;car&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;bazz&quot;</span><span class="p">:</span> <span class="s2">&quot;fuzz&quot;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>

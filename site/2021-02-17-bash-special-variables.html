@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Bash Special Variables</h1>
+<p>Some of the most useful bash special variables.</p>
+<ul>
+<li><code>$0</code> is the name of the shell or shell script.</li>
+<li><code>$1, $2, $3, ...</code> are the positional parameters.</li>
+<li><code>$@</code> is an array-like construct of all positional parameters, {$1, $2, $3 ...}.</li>
+<li><code>$*</code> is the IFS expansion of all positional parameters, $1 $2 $3 ....</li>
+<li><code>$#</code> is the number of positional parameters.</li>
+<li><code>$=</code> current options set for the shell.</li>
+<li><code>$$</code> pid of the current shell (not subshell).</li>
+<li><code>$_</code> most recent parameter (or the abs path of the command to start the current shell immediately after startup).</li>
+<li><code>$IFS</code> is the (input) field separator.</li>
+<li><code>$?</code> is the most recent foreground pipeline exit status.</li>
+<li><code>$!</code> is the PID of the most recent background command.</li>
+</ul>
+<p><a href="https://stackoverflow.com/a/5163260/238365">Source</a></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Fixing commits with <code>git commit --fixup</code> and <code>git rebase -i --autosquash</code></h1>
+<p><code>git commit --fixup</code> is very useful if you want to do fixes and later rewrite history to make it look like the fix was already in the original commit.</p>
+<p><code>git commit --fixup &lt;sha&gt;</code> associates a new commit with a previous commit, so that it's easier to squash them when doing a interactive rebase. It automatically reorders commits in interactive rebases so the original commit and the fixup are already one after the other.</p>
+<p><code>git rebase -i --autosquash &lt;sha&gt;</code> goes one step ahead and it automatically squashes original commits and their fixups.</p>
+    </div>
+  </body>
+</html>

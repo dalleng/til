@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>What does <code>/</code> represent in the argument list of a function</h1>
+<p>A <code>/</code> is used to represent that all of the previous arguments are positional only.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="n">keyword_or_positional</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pos1=</span><span class="si">{</span><span class="n">pos1</span><span class="si">}</span><span class="s2">, pos2=</span><span class="si">{</span><span class="n">pos2</span><span class="si">}</span><span class="s2">, keyword_or_positional=</span><span class="si">{</span><span class="n">keyword_or_positional</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">test</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">pos1</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pos2</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">keyword_or_positional</span><span class="o">=</span><span class="mi">12</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">test</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">keyword_or_positional</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">pos1</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pos2</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">keyword_or_positional</span><span class="o">=</span><span class="mi">12</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>

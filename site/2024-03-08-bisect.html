@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1><code>bisect</code> module</h1>
+<p>The <code>bisect</code> module provides functions that help maintain lists in order without
+doing full sorting after each insertion.</p>
+<p>It is also useful for searching in a sorted list. Search is done in logarithmic time, so it's better than linear search.</p>
+<p><code>bisect.bisect_left(a, x)</code> returns the insertion point for x in a. If values of x are already inserted in returns the position to the left of
+the first instance of x.</p>
+<p><code>bisect.bisect_right(a, x)</code> (same as <code>bisect.bisect</code>) returns the insertion point for x in a. If values of x are already inserted in returns the position of the right of
+the last instance of x.</p>
+<p><code>bisect.insort_left(a, x)</code> calls <code>bisect.bisect_left</code> to get the insertion position and then calls <code>a.insert</code>.</p>
+<p><code>bisect.insort_right(a, x)</code> calls <code>bisect.bisect_right</code> to get the insertion position and then calls <code>a.insert</code>.</p>
+<p><a href="https://docs.python.org/3/library/bisect.html">Source</a></p>
+    </div>
+  </body>
+</html>

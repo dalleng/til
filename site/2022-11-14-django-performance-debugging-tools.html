@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Django performance debugging tools</h1>
+<p>Compendium of django debugging packages.</p>
+<h2>Django Debug Toolbar</h2>
+<p>Displays a configurable set of panels on django rendered views. Panels display executed queries, cache calls, signals, cpu time.
+Very useful to debug perfomance issues. Custom panels can be added as well. The only con of this project is that it only works
+on Django rendered views as the debug panel is added using django templates.</p>
+<p>If Django Rest Framework is used, the browsable API can be used to render the debug panel and inspect REST API requests.</p>
+<p>https://github.com/jazzband/django-debug-toolbar</p>
+<h2>Django Silk</h2>
+<p>Silk intercepts and stores HTTP requests and database queries before presenting them in a user interface for further inspection. Very useful to debug Ajax calls and APIs.</p>
+<p>The only con of this project is that it stores http requests and queries in the DB, which can make the application slower if enabled on prod. Of course, an option would be to only enable it on development environments.</p>
+<p>https://github.com/jazzband/django-silk</p>
+<h2>Django Query Inspect</h2>
+<p>Logs repeated queries to the console. It can also display a traceback to where the queries occur in the codebase.
+https://github.com/dobarkod/django-queryinspect</p>
+    </div>
+  </body>
+</html>

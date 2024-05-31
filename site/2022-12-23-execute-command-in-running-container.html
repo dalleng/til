@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Execute command in running container</h1>
+<p><code>docker exec</code> lets you run commands in a running container. For example, to get a bash prompt you would do:</p>
+<p><code>docker exec -it &lt;container&gt; bash</code></p>
+<p>|flag|description|
+|---|---|
+|<code>-i</code>|Keep STDIN open even if not attached|
+|<code>-t</code>|Allocate a pseudo-TTY|</p>
+<p>For docs and complete list of flags: https://docs.docker.com/engine/reference/commandline/exec/</p>
+    </div>
+  </body>
+</html>

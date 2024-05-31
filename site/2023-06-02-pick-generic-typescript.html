@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1><code>Pick</code> generic</h1>
+<p>The <code>Pick</code> generic allows you to create a new type based on a subset of keys of an existing type. In the example below,
+the <code>TodoPreview</code> type includes the <code>title</code> and <code>completed</code> keys from the <code>Todo</code> interface, but not <code>description</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">Todo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">completed</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">type</span><span class="w"> </span><span class="nx">TodoPreview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Pick</span><span class="o">&lt;</span><span class="nx">Todo</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;title&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;completed&#39;</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">todo</span><span class="o">:</span><span class="w"> </span><span class="kt">TodoPreview</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Clean room&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">completed</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<p>In more detail: <code>Pick&lt;T, K extends keyof T&gt;</code> is a generic that takes two type arguments. <code>T</code> is the type from which you want
+to pick properties. <code>K</code> is the properties you want to pick from <code>T</code>.</p>
+    </div>
+  </body>
+</html>

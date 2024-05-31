@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1><code>slice</code> built-in object</h1>
+<p>A <code>slice</code> object represents the set of indices specified by <code>range(start, stop, step)</code>. The <code>start</code> and <code>step</code> are optional.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Can be useful when creating a custom data structure that customizes indexing. Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;</span> <span class="k">class</span> <span class="nc">CustomMap</span><span class="p">:</span>
+      <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+          <span class="n">start</span> <span class="o">=</span> <span class="nb">slice</span><span class="o">.</span><span class="n">start</span>
+          <span class="n">stop</span> <span class="o">=</span> <span class="nb">slice</span><span class="o">.</span><span class="n">stop</span>
+          <span class="n">step</span> <span class="o">=</span> <span class="nb">slice</span><span class="o">.</span><span class="n">step</span>
+          <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">start</span><span class="si">=}</span><span class="s2"> </span><span class="si">{</span><span class="n">stop</span><span class="si">=}</span><span class="s2"> </span><span class="si">{</span><span class="n">step</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+          <span class="c1"># custom logic ...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">cm</span> <span class="o">=</span> <span class="n">CustomMap</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">cm</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">start</span><span class="o">=</span><span class="mi">1</span> <span class="n">stop</span><span class="o">=</span><span class="mi">2</span> <span class="n">step</span><span class="o">=</span><span class="mi">3</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Debugging celery tasks</h1>
+<p>The <code>celery.contrib.rdb</code> package can be used to do remote debugging on celery tasks. It is an extension of PDB.</p>
+<p>Sample usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">task</span>
+<span class="kn">from</span> <span class="nn">celery.contrib</span> <span class="kn">import</span> <span class="n">rdb</span>
+
+<span class="nd">@task</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">rdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>  <span class="c1"># &lt;- set break-point</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+
+<p>To attach to the process running the task and use the debugger, run the following on a terminal window:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>telnet<span class="w"> </span>localhost<span class="w"> </span><span class="m">6900</span>
+</code></pre></div>
+
+<p><a href="https://docs.celeryq.dev/en/stable/userguide/debugging.html#basics">Source</a></p>
+    </div>
+  </body>
+</html>

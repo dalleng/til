@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>What does <code>real</code>, <code>user</code> and <code>sys</code> from the output of <code>time</code> mean?</h1>
+<p>The time command found in linux and other *nix OSes output the amount of time a program took to run.
+The output is split into 3 categories, <code>real</code>, <code>user</code> and <code>sys</code>. For example:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">time</span><span class="w"> </span>foo
+real<span class="w">        </span>0m0.003s
+user<span class="w">        </span>0m0.000s
+sys<span class="w">         </span>0m0.004s
+</code></pre></div>
+
+<p>What does <code>real</code>, <code>user</code> and <code>sys</code> mean?</p>
+<ul>
+<li>
+<p>Real is wall clock time - time from start to finish of the call. This is all elapsed time including time slices used by other processes and time the process spends blocked (for example if it is waiting for I/O to complete).</p>
+</li>
+<li>
+<p>User is the amount of CPU time spent in user-mode code (outside the kernel) within the process. This is only actual CPU time used in executing the process. Other processes and time the process spends blocked do not count towards this figure.</p>
+</li>
+<li>
+<p>Sys is the amount of CPU time spent in the kernel within the process. This means executing CPU time spent in system calls within the kernel, as opposed to library code, which is still running in user-space. Like 'user', this is only CPU time used by the process. See below for a brief description of kernel mode (also known as 'supervisor' mode) and the system call mechanism.</p>
+</li>
+</ul>
+<p><a href="https://stackoverflow.com/a/556411/238365">Source</a></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>JS <code>encodeURI</code> and <code>encodeURIComponent</code> functions</h1>
+<p>The <code>encodeURI()</code> function encodes a URI by replacing each instance of certain characters by one, two, three,
+or four escape sequences representing the UTF-8 encoding of the character.</p>
+<p>The <code>encodeURI()</code> function does not encode characters that have special meaning (reserved characters) for a URI.</p>
+<p><code>encodeURI()</code> escapes all characters except:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">Not</span><span class="w"> </span><span class="nt">Escaped</span><span class="o">:</span>
+<span class="w">    </span><span class="nt">A-Z</span><span class="w"> </span><span class="nt">a-z</span><span class="w"> </span><span class="nt">0-9</span><span class="w"> </span><span class="o">;</span><span class="w"> </span><span class="o">,</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">$</span><span class="w"> </span><span class="nt">-</span><span class="w"> </span><span class="nt">_</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">!</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="err">&#39;</span><span class="w"> </span><span class="o">(</span><span class="w"> </span><span class="o">)</span><span class="w"> </span><span class="err">#</span>
+</code></pre></div>
+
+<p>Note that <code>encodeURI()</code> by itself cannot form proper HTTP GET and POST requests, such as for <code>XMLHttpRequest</code>,
+because &amp;, +, and = are not encoded, which are treated as special characters in GET and POST requests.
+<code>encodeURIComponent()</code>, however, does encode these characters.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">set1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;;,/?:@&amp;=+$#&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Reserved Characters</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">encodeURI</span><span class="p">(</span><span class="nx">set1</span><span class="p">));</span><span class="w"> </span><span class="c1">// ;,/?:@&amp;=+$#</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">set1</span><span class="p">));</span><span class="w"> </span><span class="c1">// %3B%2C%2F%3F%3A%40%26%3D%2B%24%23</span>
+</code></pre></div>
+
+<p>TL;DR Use <code>encodeURIComponent</code> if portions of the HTTP request, for example query string parameters, can contain
+special characters as part of the data and you want to properly escape them.</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI#encodeuri_vs_encodeuricomponent">Source</a></li>
+</ul>
+    </div>
+  </body>
+</html>

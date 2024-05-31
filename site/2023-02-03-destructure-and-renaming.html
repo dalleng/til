@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Destructure and renaming in ES6</h1>
+<ul>
+<li>Destructure</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;first_name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;last_name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Doe&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="kc">undefined</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">first_name</span><span class="p">,</span><span class="w"> </span><span class="nx">last_name</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">profile</span><span class="p">;</span>
+<span class="kc">undefined</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nx">first_name</span>
+<span class="s1">&#39;John&#39;</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nx">last_name</span>
+<span class="s1">&#39;Doe&#39;</span>
+</code></pre></div>
+
+<ul>
+<li>Destructure and renaming</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;first_name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;last_name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Doe&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="kc">undefined</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">first_name</span><span class="o">:</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">last_name</span><span class="o">:</span><span class="w"> </span><span class="nx">lastname</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">profile</span><span class="p">;</span>
+<span class="kc">undefined</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nx">name</span>
+<span class="s1">&#39;John&#39;</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="nx">lastname</span>
+<span class="s1">&#39;Doe&#39;</span>
+</code></pre></div>
+
+<p><a href="https://wesbos.com/destructuring-renaming">Source</a></p>
+    </div>
+  </body>
+</html>

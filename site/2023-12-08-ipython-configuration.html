@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Customize iPython shell</h1>
+<p>You can add user-level customizations to the iPython shell by editing the following file in your home directory.</p>
+<p><code>~/.ipython/profile_default/ipython_config.py</code></p>
+<p>The file is not created by iPython during it's installation, so if it doesn't exist you need to create it. If you don't
+have it execute the following:</p>
+<div class="codehilite"><pre><span></span><code>ipython<span class="w"> </span>profile<span class="w"> </span>create
+</code></pre></div>
+
+<h2>Example of adding an alias to the iPython shell</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">c</span><span class="o">.</span><span class="n">AliasManager</span><span class="o">.</span><span class="n">user_aliases</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;cl&quot;</span><span class="p">,</span> <span class="s2">&quot;clear&quot;</span><span class="p">)]</span>
+</code></pre></div>
+
+<p><a href="https://ipython.readthedocs.io/en/stable/config/intro.html">Docs</a></p>
+    </div>
+  </body>
+</html>

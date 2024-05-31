@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Debugging with ipdb in a docker-compose environment</h1>
+<p>Enable interactive mode by adding the following lines to the service definition:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">stdin_open</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">tty</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+
+<p>Run docker-compose detached with <code>docker-compose up -d</code> and attach to the container you set
+the breakpoint in with <code>docker attach &lt;container_name&gt;</code>.</p>
+<p><a href="https://odwyer.software/blog/how-to-use-ipdb-with-docker-compose">Source</a></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Search codebase history using <code>git log -S</code></h1>
+<p>The <code>-S</code> flag for <code>git log</code> lets you search the entire repo history and check if a given
+string was ever present.</p>
+<p>Example:
+<code>git log -p -S"string_to_search" --source --all</code></p>
+<p><code>-p</code>: Adds the diff.</p>
+<p><code>--source</code>: Includes the ref (branch or tag) in which <code>string_to_search</code> was added or removed.</p>
+<p><code>--all</code>: Include all branches and tags.</p>
+    </div>
+  </body>
+</html>

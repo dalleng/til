@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Reconciling Tmux and SSH Agent Forwarding.</h1>
+<p>SSH agent forwarding creates a socket file and stores the path in <code>SSH_AUTH_SOCK</code>. In between
+reconnections tmux panes or windows could be left with a stale value in <code>SSH_AUTH_SOCK</code> leading
+to ssh connection errors. For example, authentication errors when trying to push/pull to a git repo.</p>
+<p>To make sure <code>SSH_AUTH_SOCK</code> always points to the right socket:</p>
+<ol>
+<li>Create a symlink on ssh connection. In <code>~/.ssh/rc</code>.</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Fix SSH auth socket location so agent forwarding works with tmux</span>
+<span class="k">if</span><span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SSH_AUTH_SOCK</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>ln<span class="w"> </span>-sf<span class="w"> </span><span class="nv">$SSH_AUTH_SOCK</span><span class="w"> </span>~/.ssh/ssh_auth_sock
+<span class="k">fi</span>
+</code></pre></div>
+
+<ol>
+<li>Set <code>SSH_AUTH_SOCK</code> to the symlink in tmux. In <code>~/tmux.conf</code>.</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Remove SSH_AUTH_SOCK to disable tmux automatically resetting the variable</span>
+<span class="n">set</span><span class="w"> </span><span class="o">-</span><span class="n">g</span><span class="w"> </span><span class="n">update</span><span class="o">-</span><span class="n">environment</span><span class="w"> </span><span class="s2">&quot;DISPLAY SSH_ASKPASS SSH_AGENT_PID </span><span class="se">\</span>
+<span class="s2">                             SSH_CONNECTION WINDOWID XAUTHORITY&quot;</span>
+
+<span class="c1"># Use a symlink to look up SSH authentication</span>
+<span class="n">setenv</span><span class="w"> </span><span class="o">-</span><span class="n">g</span><span class="w"> </span><span class="n">SSH_AUTH_SOCK</span><span class="w"> </span><span class="o">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">ssh</span><span class="o">/</span><span class="n">ssh_auth_sock</span>
+</code></pre></div>
+
+<p>Source: <a href="https://blog.testdouble.com/posts/2016-11-18-reconciling-tmux-and-ssh-agent-forwarding/">Reconciling Tmux and SSH Agent Forwarding.</a></p>
+    </div>
+  </body>
+</html>

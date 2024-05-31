@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Check the database connection settings from the Django shell</h1>
+<p>When connected to a Django shell, after executing <code>python manage.py shell</code>. You can execute the following snippet
+to obtain the DB connection settings.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">connection</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">settings_dict</span><span class="p">)</span>
+</code></pre></div>
+
+<p>which is going to return a dictionary similar to this one:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">{</span><span class="s1">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s1">&#39;django.db.backends.postgresql&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;HOST&#39;</span><span class="p">:</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;************&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s1">&#39;********&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;PORT&#39;</span><span class="p">:</span> <span class="s1">&#39;5432&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;USER&#39;</span><span class="p">:</span> <span class="s1">&#39;************&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;ATOMIC_REQUESTS&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+ <span class="s1">&#39;AUTOCOMMIT&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+ <span class="s1">&#39;CONN_MAX_AGE&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+ <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;fallback_application_name&#39;</span><span class="p">:</span> <span class="s1">&#39;django_shell&#39;</span><span class="p">},</span>
+ <span class="s1">&#39;TIME_ZONE&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+ <span class="s1">&#39;TEST&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;CHARSET&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+  <span class="s1">&#39;COLLATION&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+  <span class="s1">&#39;MIGRATE&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+  <span class="s1">&#39;MIRROR&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+  <span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}}</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>

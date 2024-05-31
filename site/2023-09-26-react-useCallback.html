@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1><code>useCallback</code></h1>
+<p>Let's you cache a function definition so it isn't redefined after re-renders. The second argument of <code>useCallback</code> is a dependency list, if elements
+of the dependency list change the function would re-defined. On each call to <code>useCallback</code> react checks for changes in elements in the dependency list,
+if those haven't changed since the last render <code>useCallback</code> returns the cached function definition.</p>
+<p><a href="https://react.dev/reference/react/useCallback">Source</a></p>
+    </div>
+  </body>
+</html>

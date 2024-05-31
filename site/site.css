@@ -1,0 +1,23 @@
+ul li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.tag {
+    border: 1px solid black;
+    padding: 4px;
+    font-size: 11px;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+.tag.active {
+    background-color: var(--pico-primary);
+    color: white;
+}
+
+pre, code {
+  border-radius: unset;
+}

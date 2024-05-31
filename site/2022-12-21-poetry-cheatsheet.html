@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Poetry Cheatsheet</h1>
+<h2>Existing Project</h2>
+<p>Execute the following to create the <code>pyproject.toml</code> file.</p>
+<p><code>poetry init</code></p>
+<h2>New Project</h2>
+<p><code>poetry new foo</code></p>
+<p>Which will initialize the project with the following directory structure:</p>
+<div class="codehilite"><pre><span></span><code>foo
+├──<span class="w"> </span>README.md
+├──<span class="w"> </span>foo
+│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+├──<span class="w"> </span>pyproject.toml
+└──<span class="w"> </span>tests
+<span class="w">    </span>└──<span class="w"> </span>__init__.py
+
+<span class="m">2</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">4</span><span class="w"> </span>files
+</code></pre></div>
+
+<p>A useful flag is <code>--src</code> which will nest the package inside the <code>src</code> folder resulting in the following directory structure:</p>
+<div class="codehilite"><pre><span></span><code>foo
+├──<span class="w"> </span>README.md
+├──<span class="w"> </span>pyproject.toml
+├──<span class="w"> </span>src
+│<span class="w">   </span>└──<span class="w"> </span>foo
+│<span class="w">       </span>└──<span class="w"> </span>__init__.py
+└──<span class="w"> </span>tests
+<span class="w">    </span>└──<span class="w"> </span>__init__.py
+
+<span class="m">3</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">4</span><span class="w"> </span>files
+</code></pre></div>
+
+<h2>Create Virtual Env</h2>
+<p><code>poetry install</code></p>
+<p>The command will read dependencies from <code>pyproject.toml</code> and install them. If there is no virtualenv activated, it will also create one. If there's no <code>poetry.lock</code> file it will create one.</p>
+<h2>Install Packages</h2>
+<p><code>poetry add flask</code></p>
+<p>adding the <code>--dev</code> parameter is used to mark a dependency as a development dependency.</p>
+<h2>List dependencies</h2>
+<p><code>poetry show</code></p>
+<p>show the dependency tree</p>
+<p><code>poetry show --tree</code></p>
+<h2>Update a dependency</h2>
+<p><code>poetry update foo</code></p>
+<h2>Uninstall dependency</h2>
+<p><code>poetry remove foo</code></p>
+    </div>
+  </body>
+</html>

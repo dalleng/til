@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Dictionary view objects</h1>
+<p>The objects returned by dict.keys(), dict.values() and dict.items() are view objects.
+They provide a dynamic view on the dictionary’s entries, which means that when the dictionary changes, the view reflects these changes.</p>
+<p><code>iter(dictview)</code> can be used to get an iterator. See the following example:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">In </span><span class="k">[</span><span class="c">1</span><span class="k">]</span><span class="c">: d = {&#39;foo&#39;: &#39;bar&#39;}</span>
+
+<span class="c">In </span><span class="k">[</span><span class="c">2</span><span class="k">]</span><span class="c">: i = iter(d</span><span class="nt">.</span><span class="c">values())</span>
+
+<span class="c">In </span><span class="k">[</span><span class="c">3</span><span class="k">]</span><span class="c">: next(i)</span>
+<span class="c">Out</span><span class="k">[</span><span class="c">3</span><span class="k">]</span><span class="c">: &#39;bar&#39;</span>
+
+<span class="c">In </span><span class="k">[</span><span class="c">4</span><span class="k">]</span><span class="c">: next(i)</span>
+<span class="nb">---------------------------------------------------------------------------</span>
+<span class="c">StopIteration                             Traceback (most recent call last)</span>
+<span class="c">Cell In </span><span class="k">[</span><span class="c">4</span><span class="k">]</span><span class="nt">,</span><span class="c"> line 1</span>
+<span class="nb">----</span><span class="nv">&gt;</span><span class="c"> 1 next(i)</span>
+
+<span class="c">StopIteration: </span>
+</code></pre></div>
+
+<p><a href="https://docs.python.org/3/library/stdtypes.html#dict-views">Source</a></p>
+    </div>
+  </body>
+</html>

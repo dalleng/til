@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Difference between single and double quotes in bash.</h1>
+<p>Content inside single quotes is interpreted literally without string interpolation, while content inside
+double quotes is subject to string interpolation. See:</p>
+<div class="codehilite"><pre><span></span><code>bash-3.2$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;$a&#39;</span>
+<span class="nv">$a</span>
+bash-3.2$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$a</span><span class="s2">&quot;</span>
+<span class="m">10</span>
+</code></pre></div>
+
+<p><a href="https://stackoverflow.com/questions/6697753/difference-between-single-and-double-quotes-in-bash#:~:text=If%20you're%20referring%20to,the%20value%20of%20the%20variable.&amp;text=Save%20this%20answer.,-Show%20activity%20on">Source</a></p>
+    </div>
+  </body>
+</html>

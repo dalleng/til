@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>What does <code>...</code> mean in python?</h1>
+<h2>What's <code>...</code> or <code>Ellipsis</code>?</h2>
+<p><code>...</code> or <code>Ellipsis</code> is a built-in constant.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">...</span> <span class="ow">is</span> <span class="bp">Ellipsis</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kc">True</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s1">&#39;Ellipsis&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">__builtins__</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kc">True</span>
+</code></pre></div>
+
+<h2><code>...</code> as a placeholder</h2>
+<p>Probably the most common usage for <code>...</code> is as a placeholder for functions, similar to how <code>pass</code> is used.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">does_nothing</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">does_nothing2</span><span class="p">():</span>
+    <span class="mi">3</span> <span class="c1"># random constant used as a placeholder</span>
+
+<span class="k">def</span> <span class="nf">does_nothing3</span><span class="p">():</span>
+    <span class="c1"># Similar to the previous example, but instead of using</span>
+    <span class="c1"># an integer constant as a placeholder we use `...`</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>It can also be used as a placeholder in other situations, like class definitions:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">ToDo</span><span class="p">:</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>It is also used as a sentinel value in an argument list, similar to how <code>None</code> is used.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1"># assigns some default value</span>
+    <span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">foo2</span><span class="p">(</span><span class="n">param</span><span class="o">=...</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="o">...</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1"># assigns some default value</span>
+</code></pre></div>
+
+<h2><code>...</code> in type hinting</h2>
+<p><code>...</code> has also special meanings in type hinting:</p>
+<ul>
+<li><code>tuple[..., &lt;type&gt;]</code>: means a tuple of any size but with all elements of type <code>&lt;type&gt;</code>.
+E.g: <code>tuple[..., int]</code> would represent any tuple that only contains ints.</li>
+<li><code>Callable[..., &lt;type&gt;]</code>: means a callable that takes any type and number of arguments, but returns an element of <code>&lt;type&gt;</code>.
+E.g: <code>Callable[..., int]</code> would represent any callable that returns an int.</li>
+</ul>
+<h3>References:</h3>
+<ul>
+<li><a href="https://realpython.com/python-ellipsis/">When Do You Use an Ellipsis in Python?</a></li>
+<li><a href="https://stackoverflow.com/questions/54405918/python-3-ellipsis-in-function-parameters">Python 3: Ellipsis in function parameters?</a></li>
+</ul>
+    </div>
+  </body>
+</html>

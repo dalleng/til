@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Pull and resolve conflicts by using changes from the origin.</h1>
+<p>Use:</p>
+<div class="codehilite"><pre><span></span><code>git pull -X theirs &lt;origin&gt; &lt;branchname&gt;
+</code></pre></div>
+
+<p>or directly (if there's already a tracking branch associated to the local branch):</p>
+<div class="codehilite"><pre><span></span><code>git pull -X theirs
+</code></pre></div>
+
+<p>The <code>-X theirs</code> specifies that the merge strategy in case of conflicts should be to use the changes coming from origin.</p>
+<p>Also, if you want to avoid merge commits combine the former with <code>--rebase</code>. Like:</p>
+<div class="codehilite"><pre><span></span><code>git pull -X theirs --rebase
+</code></pre></div>
+    </div>
+  </body>
+</html>
