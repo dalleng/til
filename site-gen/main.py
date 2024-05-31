@@ -17,6 +17,7 @@ BASE_HTML_TEMPLATE = "base_template.html"
 INDEX_CSS = "index.css"
 INDEX_TEMPLATE = "index_template.html"
 INDEX_JS = "index.js"
+TIL_CSS = "til.css"
 
 
 @dataclass(order=True)
@@ -89,6 +90,7 @@ def generate_html_files(markdown_files: list[str]):
     tils = []
     md = markdown.Markdown(extensions=["fenced_code", "codehilite"])
     template = Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE)
+    shutil.copy(INPUT_FOLDER / TIL_CSS, OUTPUT_FOLDER)
 
     for filepath in markdown_files:
         til = TILNote(filepath)
@@ -98,7 +100,10 @@ def generate_html_files(markdown_files: list[str]):
         output_filename = OUTPUT_FOLDER / f"{til.filename}.html"
         print(f"Output: {output_filename}")
 
-        head_content = f'<link rel="stylesheet" href="{SYNTAX_HIGHLIGHTING_CSS}" />'
+        head_content = f'''
+        <link rel="stylesheet" href="{SYNTAX_HIGHLIGHTING_CSS}" />
+        <link rel="stylesheet" href="{TIL_CSS}" />
+        '''
         template.write_to_file(
             output_filename, dict(head_content=head_content, body_content=html)
         )
