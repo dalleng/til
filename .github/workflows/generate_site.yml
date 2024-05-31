@@ -1,0 +1,43 @@
+name: generate_site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+        
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    
+    - name: Detect changed files
+      id: changed_files
+      run: |
+        echo $(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '\.md$')
+        echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '\.md$')" >> "$GITHUB_OUTPUT"
+
+    - name: Run script
+      run: python site-gen/main.py --files ${{ steps.changed_files.outputs.files }}
+      if: steps.changed_files.outputs.files
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Automated commit by GitHub Actions" || echo "No changes to commit"
+        git push
+      if: steps.changed_files.outputs.files
