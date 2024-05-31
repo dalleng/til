@@ -5,12 +5,15 @@ ul li {
 
 .tag {
     border: 1px solid black;
-    background-color: var(--pico-primary);
     padding: 4px;
     font-size: 11px;
-    color: white;
 }
 
 ul {
   padding-left: 0px;
+}
+
+.tag.active {
+    background-color: var(--pico-primary);
+    color: white;
 }
