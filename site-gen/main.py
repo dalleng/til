@@ -18,6 +18,7 @@ INDEX_CSS = "index.css"
 INDEX_TEMPLATE = "index_template.html"
 INDEX_JS = "index.js"
 TIL_CSS = "til.css"
+IGNORE_FILES = ["README.md"]
 
 
 @dataclass(order=True)
@@ -170,7 +171,7 @@ def main():
         pass
 
     generate_css("default", OUTPUT_FOLDER / SYNTAX_HIGHLIGHTING_CSS)
-    all_markdown_files = glob("**/*.md", recursive=True)
+    all_markdown_files = [f for f in glob("**/*.md", recursive=True) if f not in IGNORE_FILES]
 
     if args.files:
         markdown_files = args.files
