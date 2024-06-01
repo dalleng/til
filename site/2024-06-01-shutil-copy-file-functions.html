@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>File copy functions in <code>shutil</code></h1>
+<p>There are different utility functions in the <code>shutil</code> module of the standard library for copying files. </p>
+<ul>
+<li>
+<p><code>copyfile(src, dst, *, follow_symlinks=True)</code> both <code>src</code> and <code>dst</code> can be either <code>str</code>
+or a path like object (for example, <code>pathlib.Path</code>). <code>dst</code> needs to be a file path, not a destination directory. Only copies file content, does not copy metadata.</p>
+</li>
+<li>
+<p><code>shutil.copy(src, dst, *, follow_symlinks=True)</code> both <code>src</code> and <code>dst</code> can be either <code>str</code> or a path like object (for example, <code>pathlib.Path</code>). <code>dst</code> can be either a file path or the destination directory. Returns the path to the newly created file. Copies data and permissions, but does not copy other metadata like file creation and modification times. If you want to preserve all metadata use <code>shutil.copy2(src, dst, *, follow_symlinks=True)</code></p>
+</li>
+</ul>
+<p><a href="https://docs.python.org/3/library/shutil.html">Source</a></p>
+    </div>
+  </body>
+</html>
