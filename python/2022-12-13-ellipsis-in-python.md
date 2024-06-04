@@ -54,8 +54,8 @@ def foo2(param=...):
 
 `...` has also special meanings in type hinting:
 
-- `tuple[..., <type>]`: means a tuple of any size but with all elements of type `<type>`.
-E.g: `tuple[..., int]` would represent any tuple that only contains ints.
+- `tuple[<type>, ...]`: means a tuple of any size but with all elements of type `<type>`.
+E.g: `tuple[int, ...]` would represent any tuple that only contains ints.
 - `Callable[..., <type>]`: means a callable that takes any type and number of arguments, but returns an element of `<type>`.
 E.g: `Callable[..., int]` would represent any callable that returns an int.
 
