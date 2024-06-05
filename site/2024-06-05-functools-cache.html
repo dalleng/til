@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Using <code>functools.cache</code> to memoize functions</h1>
+<p>The <code>functools.cache</code> decorator is an unbounded cache for functions, whenever a function is called
+the cache is checked first to see if the return value is stored there before executing the function.
+All parameters of the function need to be hashable since the cache uses a dictionary.</p>
+<p>(Source)[https://docs.python.org/3/library/functools.html#functools.cache]</p>
+    </div>
+  </body>
+</html>
