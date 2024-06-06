@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1><code>utf8.RuneCountInString</code> utility function to count runes in a string.</h1>
+<p>In Go, if you do <code>len(string)</code> you get the byte size which might not always match the character count. For example,
+if you execute <code>len("niño")</code> you will get <code>5</code>, since <code>ñ</code> is a non ascii character and takes more than one byte to encode.
+The recommended thing to do in cases in which you need to access strings by characters is to first cast the <code>string</code> to a
+<code>rune</code> slice, for example <code>len([]rune("niño"))</code> which would the return <code>4</code>. An alternative to this is to use the function 
+<code>RuneCountInString</code> from <code>unicode/utf8</code> in the standard library.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<span class="w">    </span><span class="s">&quot;unicode/utf8&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">foo</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;niño&quot;</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">foo</span><span class="p">))</span><span class="w">                    </span><span class="c1">// prints 5 as len returns the byte count and ñ is non ascii</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nb">len</span><span class="p">([]</span><span class="nb">rune</span><span class="p">(</span><span class="nx">foo</span><span class="p">)))</span><span class="w">            </span><span class="c1">// prints 4 as the strings is casted to a rune slice first</span>
+<span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">utf8</span><span class="p">.</span><span class="nx">RuneCountInString</span><span class="p">(</span><span class="nx">foo</span><span class="p">))</span><span class="w"> </span><span class="c1">// utility function to return the rune count</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><a href="https://pkg.go.dev/unicode/utf8#RuneCountInString">Source</a></p>
+    </div>
+  </body>
+</html>
