@@ -17,8 +17,10 @@
 <p>The same way you can use <code>docker exec</code> to execute a command on a container, <code>docker compose exec &lt;service&gt;</code> can be used
 to execute a command on a container in the context of docker compose. For example:</p>
 <p>Creating a superuser in a django project</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;container_name&gt;<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>&lt;service_name&gt;<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
 </code></pre></div>
+
+<p>With <code>&lt;service_name&gt;</code> as defined in the compose file</p>
     </div>
   </body>
 </html>
