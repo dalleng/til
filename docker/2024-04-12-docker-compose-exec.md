@@ -6,5 +6,5 @@ to execute a command on a container in the context of docker compose. For exampl
 Creating a superuser in a django project
 
 ```shell
-docker compose exec -it python manage.py createsuperuser
+docker compose exec -it <container_name> python manage.py createsuperuser
 ```
