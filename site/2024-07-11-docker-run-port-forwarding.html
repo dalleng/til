@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Port forwarding in docker run</h1>
+<p>The <code>-p</code> flag can be used for forwarding a port from a container to the host.</p>
+<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span>&lt;host_port&gt;:&lt;container_port&gt;<span class="w"> </span>&lt;image&gt;
+</code></pre></div>
+
+<p><a href="https://docs.docker.com/reference/cli/docker/container/run/#publish">Docs</a></p>
+    </div>
+  </body>
+</html>
