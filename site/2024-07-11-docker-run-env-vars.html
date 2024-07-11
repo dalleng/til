@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Setting environment variables in a container with docker run</h1>
+<p>When running a container with docker run you can pass environment variables using the <code>-e</code> flag.</p>
+<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">VAR</span><span class="o">=</span>foo<span class="w"> </span>&lt;image&gt;
+</code></pre></div>
+
+<p><a href="https://docs.docker.com/reference/cli/docker/container/run/#env">Docs</a></p>
+    </div>
+  </body>
+</html>
