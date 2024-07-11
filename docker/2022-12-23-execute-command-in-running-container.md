@@ -7,4 +7,4 @@
 - `-i` Keep STDIN open even if not attached
 - `-t` Allocate a pseudo-TTY
 
-For docs and complete list of flags: https://docs.docker.com/engine/reference/commandline/exec/
+For docs and complete list of flags: [https://docs.docker.com/engine/reference/commandline/exec/](https://docs.docker.com/engine/reference/commandline/exec/)
