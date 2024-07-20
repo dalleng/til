@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Extensions in the compose file</h1>
+<p>Use keys with the prefix <code>x-</code> as a top level element to modularize configurations you want to reuse. Docker compose
+ignores any fields that start with <code>x-</code>.</p>
+<p>Extensions can be combined with anchors and aliases, to reference the shared configuration in different services. Check the following example.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">x-shared-env</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;env</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CONFIG_KEY</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EXAMPLE_KEY</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;env</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">django:latest</span>
+<span class="w">    </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;env</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:latest</span>
+</code></pre></div>
+
+<p>Keys starting with <code>x-</code> can also be used within other compose structures where user-defined keys are not expected. They can serve as metadata for custom scripts or other tools.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">service</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">placement</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">x-aws-role</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;arn:aws:iam::XXXXXXXXXXXX:role/foo&quot;</span>
+<span class="w">        </span><span class="nt">x-aws-region</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;eu-west-3&quot;</span>
+<span class="w">        </span><span class="nt">x-azure-region</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;france-central&quot;</span>
+</code></pre></div>
+
+<p><a href="https://docs.docker.com/compose/compose-file/11-extension/">Docs</a></p>
+    </div>
+  </body>
+</html>
