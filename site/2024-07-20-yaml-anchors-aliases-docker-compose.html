@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Using YAML anchors and aliases in docker compose files</h1>
+<p>In docker compose files you can use YAML anchors and aliases to avoid repetition. In the example below an anchor is defined using <code>&amp;</code>
+with an alias name, in this case <code>&amp;django</code>. The alias is then referenced in the <code>celeryworker</code> service definition, using <code>&lt;&lt;: *django</code>.</p>
+<p>The <code>&lt;&lt;:</code> override syntax allows for keys to be overriden. When there are repeated keys, the configuration specified directly within
+the service will take precedence over the values inherited from the anchor.</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">django</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;django</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python manage.py runserver 0.0.0.0:8000</span>
+<span class="w">        </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.:/app/</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000:8000</span>
+<span class="w">        </span><span class="nt">env_file</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+
+<span class="w w-Error">  </span><span class="nt">redis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis:7.2.4</span>
+
+<span class="w">  </span><span class="nt">celeryworker</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*django</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python -m celery -A config worker -l info</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>
