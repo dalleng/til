@@ -27,3 +27,5 @@ services:
     ports: []
     command: python -m celery -A config worker -l info
 ```
+
+[Docs](https://docs.docker.com/compose/compose-file/10-fragments/)
