@@ -12,4 +12,4 @@ In [13]: print('\N{rightwards arrow}')
 →
 ```
 
-List of Emojis in Unicode: https://symbl.cc/en/emoji/
+List of Emojis in Unicode: [https://symbl.cc/en/emoji/](https://symbl.cc/en/emoji/)
