@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Escape sequence to add emojis to javascript strings</h1>
+<p>In JS strings you can use the escape sequence '\u' to add unicode characters.</p>
+<p>Examples:</p>
+<p>For the <a href="https://codepoints.net/U+1f40d">snake emoji</a>.</p>
+<ul>
+<li>Using the code points directly</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;\u{1f40d}&#39;</span><span class="p">)</span>
+<span class="err">🐍</span>
+</code></pre></div>
+
+<ul>
+<li>Using UTF-16</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;\ud83d\udc0d&#39;</span><span class="p">)</span>
+<span class="err">🐍</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>
