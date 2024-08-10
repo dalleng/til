@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Escape sequence to use emojis in Python strings</h1>
+<p>In python, the <code>\N{&lt;name&gt;}</code> escape sequence can be used to add emojis or other unicode characters by name.</p>
+<p>Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{snake}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="err">🐍</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\N{rightwards arrow}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="err">→</span>
+</code></pre></div>
+
+<p>List of Emojis in Unicode: https://symbl.cc/en/emoji/</p>
+    </div>
+  </body>
+</html>
