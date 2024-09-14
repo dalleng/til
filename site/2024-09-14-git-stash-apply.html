@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Applying a stash without removing it from the list</h1>
+<p>The stash list could be used to store small changes that are frequently applied, but for some reason you do not want
+to commit.</p>
+<p><code>git stash list</code> can be used to check the stash list, which will return an output similar to the one below.</p>
+<div class="codehilite"><pre><span></span><code>stash@{0}: WIP on main: abcdef1 Commit message
+stash@{1}: WIP on feature: 1234567 Another commit message
+stash@{2}: WIP on dev: 89abcde Yet another commit message
+</code></pre></div>
+
+<p>To check the changes in a specific stash entry, <code>git stash show -p stash@{0}</code> can be used (replace 0 for other entries in the list).
+To make it easier to identify changes in the stash list, you can add a message when pushing to the stash using <code>-m</code>. For example:
+<code>git stash -m "a message"</code>.</p>
+<p>Once the stash entry to be applied has been identified, you can use <code>git stash apply stash@{0}</code> (again, 0 can be replaced for some other entry).</p>
+    </div>
+  </body>
+</html>
