@@ -89,7 +89,7 @@ def parse_args() -> argparse.Namespace:
 def generate_html_files(markdown_files: list[str]):
     # Generate html files for each markdown file
     tils = []
-    md = markdown.Markdown(extensions=["fenced_code", "codehilite"])
+    md = markdown.Markdown(extensions=["fenced_code", "codehilite", "tables"])
     template = Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE)
     shutil.copy(INPUT_FOLDER / TIL_CSS, OUTPUT_FOLDER)
 
