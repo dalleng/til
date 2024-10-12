@@ -41,7 +41,7 @@ class TILNote:
     def title(self) -> str | None:
         with open(self.source, "r") as file:
             for line in file:
-                # regex for lines starting with one or more '#', which would be files
+                # regex for lines starting with one or more '#', which would be titles
                 if match := re.match(r"^\#+\s*(.*)", line.strip()):
                     return match.group(1).strip()
         return None
@@ -64,7 +64,7 @@ class Template:
     content: str
 
     @classmethod
-    def from_file(cls, source: Path | str):
+    def from_file(cls, source: Path | str) -> "Template":
         with open(source) as f:
             content = f.read()
         return cls(content)
