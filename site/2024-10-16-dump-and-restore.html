@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Dump and restore PostgreSQL databases</h1>
+<h2>Dump the database</h2>
+<p><code>pg_dump --host=localhost --port=15432 --username=postgres &lt;db_name&gt; &gt; test.dump</code></p>
+<h2>Restore the database</h2>
+<p><code>psql &lt;db_name&gt; &lt; test.dump</code></p>
+<p>You can also use <code>--username</code>, <code>--host</code>, <code>--port</code>, etc. with <code>psql</code>.</p>
+    </div>
+  </body>
+</html>
