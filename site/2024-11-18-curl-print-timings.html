@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Check Latency with <code>curl</code></h1>
+<p>You can measure the time it takes to complete a request using the <code>-w</code> (write-out) option with specific variables for timing.</p>
+<h2>Example</h2>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;DNS lookup: %{time_namelookup}s\nConnect: %{time_connect}s\nPre-transfer: %{time_pretransfer}s\nStart-transfer: %{time_starttransfer}s\nTotal time: %{time_total}s\n&quot;</span><span class="w"> </span><span class="s2">&quot;https://httpbin.org/uuid&quot;</span>
+</code></pre></div>
+
+<h2>Example Output</h2>
+<div class="codehilite"><pre><span></span><code>{
+<span class="w">  </span><span class="s2">&quot;uuid&quot;</span>:<span class="w"> </span><span class="s2">&quot;742b57d3-3b6d-4145-ba29-ed7d56348ccf&quot;</span>
+}
+<span class="nv">DNS</span><span class="w"> </span><span class="nv">lookup</span>:<span class="w"> </span><span class="mi">0</span>.<span class="mi">090516</span><span class="nv">s</span>
+<span class="k">Connect</span>:<span class="w"> </span><span class="mi">0</span>.<span class="mi">266375</span><span class="nv">s</span>
+<span class="nv">Pre</span><span class="o">-</span><span class="nv">transfer</span>:<span class="w"> </span><span class="mi">0</span>.<span class="mi">676725</span><span class="nv">s</span>
+<span class="nv">Start</span><span class="o">-</span><span class="nv">transfer</span>:<span class="w"> </span><span class="mi">1</span>.<span class="mi">326602</span><span class="nv">s</span>
+<span class="nv">Total</span><span class="w"> </span><span class="nv">time</span>:<span class="w"> </span><span class="mi">1</span>.<span class="mi">332040</span><span class="nv">s</span>
+</code></pre></div>
+
+<h2>Explanation of Timing Variables</h2>
+<ul>
+<li><strong>DNS lookup (time_namelookup)</strong>: Time to resolve the DNS to an IP address.</li>
+<li><strong>Connect (time_connect)</strong>: Time to establish the TCP connection to the server.</li>
+<li><strong>Pre-transfer (time_pretransfer)</strong>: Time from the start until the beginning of the transfer (just before the first byte).</li>
+<li><strong>Start-transfer (time_starttransfer)</strong>: Time until the server sends the first byte (a measure of server processing).</li>
+<li><strong>Total time (time_total)</strong>: Total time from start to finish.</li>
+</ul>
+<h2>Additional Flags</h2>
+<p>If you don't care about the output and just want to obtain the timings, you can use the <code>-o</code> option to redirect output to <code>/dev/null</code>. Additionally, the <code>-s</code> (silent mode) option disables the output of additional text like progress or error messages. So if you just want the timings without anything else, use the following example:</p>
+<div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-s<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;Total time: %{time_total}s\n&quot;</span><span class="w"> </span>https://httpbin.org/uuid
+</code></pre></div>
+    </div>
+  </body>
+</html>
