@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Use <code>%c</code> to apply styling to <code>console.log</code> output</h1>
+<p>The <code>%c</code> placeholder is used to apply css style to <code>console.log</code> output. The styles are only applied to the text following the placeholder.</p>
+<h2>Examples:</h2>
+<h3>A single style</h3>
+<p><code>console.log('%cHello World', 'color: green; font-weight: bold;')</code></p>
+<p><img alt="Green text in the javascript console" src="../img/console-log-green-text.png" /></p>
+<h3>Two styles</h3>
+<p>The <code>%c</code> placeholder can be used more than once. See:</p>
+<p><code>console.log('%cGreen %cBlue', 'color: green;', 'color: blue;')</code></p>
+<p><img alt="Green and blue text in the javascript console" src="../img/console-log-green-blue.png" /></p>
+    </div>
+  </body>
+</html>
