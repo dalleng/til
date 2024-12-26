@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1><code>networkQuality</code> tool in macos</h1>
+<p>In macos there is a  cli app <code>networkQuality</code> that can be used to test network quality. It outputs a summary including
+download and upload speeds, latency, and responsiveness (measure in round trips per minute).</p>
+<h2>Usage:</h2>
+<ul>
+<li><code>networkQuality</code> or <code>networkQuality -v</code> for a more verbose output</li>
+</ul>
+<h2>Example output:</h2>
+<div class="codehilite"><pre><span></span><code><span class="o">====</span><span class="w"> </span><span class="n">Verbose</span><span class="w"> </span><span class="n">Results</span><span class="w"> </span><span class="o">====</span>
+<span class="o">---</span>
+<span class="n">Capacity</span><span class="p">:</span>
+<span class="o">---</span>
+<span class="w">   </span><span class="n">Uplink</span><span class="w"> </span><span class="n">capacity</span><span class="p">:</span><span class="w"> </span><span class="mf">31.259</span><span class="w"> </span><span class="n">Mbps</span>
+<span class="w">      </span><span class="n">Accuracy</span><span class="p">:</span><span class="w"> </span><span class="n">High</span>
+<span class="w">      </span><span class="n">Uplink</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="n">transferred</span><span class="p">:</span><span class="w"> </span><span class="mf">31.734</span><span class="w"> </span><span class="n">MB</span>
+<span class="w">      </span><span class="n">Uplink</span><span class="w"> </span><span class="n">Flow</span><span class="w"> </span><span class="n">count</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span>
+<span class="w">   </span><span class="n">Downlink</span><span class="w"> </span><span class="n">capacity</span><span class="p">:</span><span class="w"> </span><span class="mf">514.437</span><span class="w"> </span><span class="n">Mbps</span>
+<span class="w">      </span><span class="n">Accuracy</span><span class="p">:</span><span class="w"> </span><span class="n">High</span>
+<span class="w">      </span><span class="n">Downlink</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="n">transferred</span><span class="p">:</span><span class="w"> </span><span class="mf">500.612</span><span class="w"> </span><span class="n">MB</span>
+<span class="w">      </span><span class="n">Downlink</span><span class="w"> </span><span class="n">Flow</span><span class="w"> </span><span class="n">count</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span>
+<span class="o">---</span>
+<span class="n">Latency</span><span class="p">:</span>
+<span class="o">---</span>
+<span class="w">   </span><span class="n">Idle</span><span class="w"> </span><span class="n">Latency</span><span class="p">:</span>
+<span class="w">      </span><span class="mi">1057</span><span class="w"> </span><span class="n">RPM</span><span class="w"> </span><span class="p">(</span><span class="mf">56.750</span><span class="w"> </span><span class="n">milliseconds</span><span class="p">)</span>
+<span class="w">         </span><span class="n">Transport</span><span class="p">:</span><span class="w"> </span><span class="mi">1185</span><span class="w"> </span><span class="n">RPM</span><span class="w"> </span><span class="p">(</span><span class="mf">50.625</span><span class="w"> </span><span class="n">milliseconds</span><span class="p">)</span>
+<span class="w">         </span><span class="n">Security</span><span class="p">:</span><span class="w"> </span><span class="mi">860</span><span class="w"> </span><span class="n">RPM</span><span class="w"> </span><span class="p">(</span><span class="mf">69.750</span><span class="w"> </span><span class="n">milliseconds</span><span class="p">)</span>
+<span class="w">         </span><span class="n">HTTP</span><span class="p">:</span><span class="w"> </span><span class="mi">1203</span><span class="w"> </span><span class="n">RPM</span><span class="w"> </span><span class="p">(</span><span class="mf">49.875</span><span class="w"> </span><span class="n">milliseconds</span><span class="p">)</span>
+<span class="w">      </span><span class="n">Accuracy</span><span class="p">:</span><span class="w"> </span><span class="n">High</span>
+<span class="w">   </span><span class="n">Responsiveness</span><span class="p">:</span><span class="w"> </span><span class="n">Medium</span>
+<span class="w">      </span><span class="mi">680</span><span class="w"> </span><span class="n">RPM</span><span class="w"> </span><span class="p">(</span><span class="mf">88.154</span><span class="w"> </span><span class="n">milliseconds</span><span class="p">)</span>
+<span class="w">         </span><span class="n">Transport</span><span class="p">:</span><span class="w"> </span><span class="mi">733</span><span class="w"> </span><span class="n">RPM</span><span class="w"> </span><span class="p">(</span><span class="mf">81.755</span><span class="w"> </span><span class="n">milliseconds</span><span class="p">)</span>
+<span class="w">         </span><span class="n">Security</span><span class="p">:</span><span class="w"> </span><span class="mi">569</span><span class="w"> </span><span class="n">RPM</span><span class="w"> </span><span class="p">(</span><span class="mf">105.357</span><span class="w"> </span><span class="n">milliseconds</span><span class="p">)</span>
+<span class="w">         </span><span class="n">HTTP</span><span class="p">:</span><span class="w"> </span><span class="mi">698</span><span class="w"> </span><span class="n">RPM</span><span class="w"> </span><span class="p">(</span><span class="mf">85.878</span><span class="w"> </span><span class="n">milliseconds</span><span class="p">)</span>
+<span class="w">         </span><span class="n">HTTP</span><span class="w"> </span><span class="n">loaded</span><span class="p">:</span><span class="w"> </span><span class="mi">316</span><span class="w"> </span><span class="n">RPM</span><span class="w"> </span><span class="p">(</span><span class="mf">189.871</span><span class="w"> </span><span class="n">milliseconds</span><span class="p">)</span>
+<span class="w">      </span><span class="n">Accuracy</span><span class="p">:</span><span class="w"> </span><span class="n">High</span>
+<span class="o">---</span>
+<span class="n">Protocols</span><span class="w"> </span><span class="n">Used</span><span class="p">:</span>
+<span class="o">---</span>
+<span class="w">    </span><span class="n">HTTP</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="o">%</span>
+<span class="o">---</span>
+<span class="n">Transport</span><span class="o">-</span><span class="n">layer</span><span class="w"> </span><span class="n">info</span><span class="p">:</span>
+<span class="o">---</span>
+<span class="w">    </span><span class="n">ECN</span><span class="w"> </span><span class="n">Disabled</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="o">%</span><span class="p">,</span><span class="w"> </span><span class="n">L4S</span><span class="w"> </span><span class="n">Disabled</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="o">%</span>
+<span class="o">---</span>
+<span class="n">Other</span><span class="w"> </span><span class="n">Info</span><span class="p">:</span>
+<span class="o">---</span>
+<span class="w">   </span><span class="n">Test</span><span class="w"> </span><span class="n">Endpoint</span><span class="p">:</span><span class="w"> </span><span class="n">brsao4</span><span class="o">-</span><span class="n">edge</span><span class="o">-</span><span class="n">bx</span><span class="o">-</span><span class="mf">012.</span><span class="n">aaplimg</span><span class="o">.</span><span class="n">com</span>
+<span class="w">   </span><span class="n">Interface</span><span class="p">:</span><span class="w"> </span><span class="n">en0</span>
+<span class="w">   </span><span class="n">Start</span><span class="p">:</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">26</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">26.700</span>
+<span class="w">   </span><span class="n">End</span><span class="p">:</span><span class="w"> </span><span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">26</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mf">36.159</span>
+<span class="w">   </span><span class="n">OS</span><span class="w"> </span><span class="n">Version</span><span class="p">:</span><span class="w"> </span><span class="n">Version</span><span class="w"> </span><span class="mf">15.1</span><span class="o">.</span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">Build</span><span class="w"> </span><span class="mi">24</span><span class="n">B2091</span><span class="p">)</span>
+
+<span class="o">====</span><span class="w"> </span><span class="n">SUMMARY</span><span class="w"> </span><span class="o">====</span>
+<span class="n">Uplink</span><span class="w"> </span><span class="n">capacity</span><span class="p">:</span><span class="w"> </span><span class="mf">31.259</span><span class="w"> </span><span class="n">Mbps</span>
+<span class="n">Downlink</span><span class="w"> </span><span class="n">capacity</span><span class="p">:</span><span class="w"> </span><span class="mf">514.437</span><span class="w"> </span><span class="n">Mbps</span>
+<span class="n">Responsiveness</span><span class="p">:</span><span class="w"> </span><span class="n">Medium</span><span class="w"> </span><span class="p">(</span><span class="mf">88.154</span><span class="w"> </span><span class="n">milliseconds</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">680</span><span class="w"> </span><span class="n">RPM</span><span class="p">)</span>
+<span class="n">Idle</span><span class="w"> </span><span class="n">Latency</span><span class="p">:</span><span class="w"> </span><span class="mf">56.750</span><span class="w"> </span><span class="n">milliseconds</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">1057</span><span class="w"> </span><span class="n">RPM</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>
