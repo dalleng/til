@@ -2,7 +2,7 @@
 
 The flatMap method is a combination of calling map followed by flat. It simplifies the process of mapping over an array and flattening the result in one step.
 
-Example
+## Example:
 
 This method is particularly useful for extracting arrays from an array of objects and flattening the structure.
 
