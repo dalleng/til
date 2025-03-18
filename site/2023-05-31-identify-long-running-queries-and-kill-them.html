@@ -14,13 +14,9 @@
   <body>
     <div class="container" style="margin-top: 20px">
       <h1>Identify long running queries and kill them.</h1>
-<p>The <code>pg_stat_activity</code> table in PostgreSQL contains information about the current activity of database sessions. 
-It provides details about active connections, including the queries being executed, their duration, the application and user associated with 
-each connection, and various other statistics related to the current database activity. 
-The table is commonly used for monitoring and troubleshooting purposes, allowing administrators to gain insights into the 
-behavior and performance of database sessions.</p>
-<p>The following query helps you identify long running queries. This can be useful to find queries that might be negatively affecting
-performance in order to manually stop them.</p>
+<p>The pg_stat_activity table provides real-time information on active database sessions, including running queries, duration, user, and application. It’s useful for monitoring and troubleshooting performance issues.</p>
+<h2>Find Long-Running Queries</h2>
+<p>The following query identifies queries running for more than 5 minutes:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">SELECT</span>
 <span class="w">  </span><span class="n">pid</span><span class="p">,</span>
 <span class="w">  </span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="p">.</span><span class="n">query_start</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">duration</span><span class="p">,</span>
@@ -30,15 +26,25 @@ performance in order to manually stop them.</p>
 <span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="p">.</span><span class="n">query_start</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nb">interval</span><span class="w"> </span><span class="s1">&#39;5 minutes&#39;</span><span class="p">;</span>
 </code></pre></div>
 
-<p>If you want to stop from the results of the previous query, you can use the following statement using the pid from the previous results.</p>
+<h2>Cancel a query</h2>
+<p>To stop a query gracefully, use:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">pg_cancel_backend</span><span class="p">(</span><span class="n">__pid__</span><span class="p">);</span>
 </code></pre></div>
 
-<p>It may take a few seconds to stop the query entirely using the pg_cancel_backend command.</p>
+<p>(It may take a few seconds to take effect.)</p>
+<h2>Force Termination</h2>
 <p>If you want to force quit, the equivalent of a <code>kill -9</code>, you can use <code>pg_cancel_backend</code> instead. See:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">pg_terminate_backend</span><span class="p">(</span><span class="n">__pid__</span><span class="p">);</span>
 </code></pre></div>
 
+<h2>Kill All Existing Queries</h2>
+<p>To terminate all currently running queries (excluding the current session), run:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">pg_terminate_backend</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">pg_backend_pid</span><span class="p">();</span>
+</code></pre></div>
+
+<p>Warning: This will forcefully terminate all active queries, which may cause disruptions.</p>
 <p><a href="https://medium.com/little-programming-joys/finding-and-killing-long-running-queries-on-postgres-7c4f0449e86d">Source</a></p>
     </div>
   </body>
