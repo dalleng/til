@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Useful queries to check existing connections</h1>
+<h2>List All Active Connections</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">  </span><span class="n">pid</span><span class="p">,</span>
+<span class="w">  </span><span class="n">usename</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">user</span><span class="p">,</span>
+<span class="w">  </span><span class="n">datname</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">database</span><span class="p">,</span>
+<span class="w">  </span><span class="n">client_addr</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">client</span><span class="p">,</span>
+<span class="w">  </span><span class="n">application_name</span><span class="p">,</span>
+<span class="w">  </span><span class="k">state</span><span class="p">,</span>
+<span class="w">  </span><span class="n">query</span><span class="p">,</span>
+<span class="w">  </span><span class="n">backend_start</span><span class="p">,</span>
+<span class="w">  </span><span class="n">state_change</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span><span class="p">;</span>
+</code></pre></div>
+
+<p>This query retrieves details on all active connections, including the user, database, client address, application, and query being executed.</p>
+<h2>List Connections for a Specific Database</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="n">usename</span><span class="p">,</span><span class="w"> </span><span class="n">client_addr</span><span class="p">,</span><span class="w"> </span><span class="k">state</span><span class="p">,</span><span class="w"> </span><span class="n">query</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">datname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;your_database_name&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+<h2>Count the Number of Active Connections</h2>
+<p>This query shows how many connections exist per database.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">datname</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">connection_count</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">datname</span><span class="p">;</span>
+</code></pre></div>
+
+<h2>List Idle Connections (Potentially Stale)</h2>
+<p>Idle connections are those that are open but not actively executing a query.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="n">usename</span><span class="p">,</span><span class="w"> </span><span class="n">client_addr</span><span class="p">,</span><span class="w"> </span><span class="k">state</span><span class="p">,</span><span class="w"> </span><span class="n">query</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;idle&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+<h2>Identify Connections from a Specific User</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="n">datname</span><span class="p">,</span><span class="w"> </span><span class="n">client_addr</span><span class="p">,</span><span class="w"> </span><span class="k">state</span><span class="p">,</span><span class="w"> </span><span class="n">query</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">usename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;your_username&#39;</span><span class="p">;</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>
