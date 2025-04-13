@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Use a file to specify the http payload with curl</h1>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>query.json
+<span class="o">{</span><span class="s2">&quot;foo&quot;</span>:<span class="w"> </span><span class="s2">&quot;bar&quot;</span><span class="o">}</span>
+
+$<span class="w"> </span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Accept: application/json&quot;</span><span class="w"> </span>https://httpbin.org/post<span class="w"> </span>--data-binary<span class="w"> </span>@query.json
+<span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;args&quot;</span>:<span class="w"> </span><span class="o">{}</span>,
+<span class="w">  </span><span class="s2">&quot;data&quot;</span>:<span class="w"> </span><span class="s2">&quot;{\&quot;foo\&quot;: \&quot;bar\&quot;}\n&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;files&quot;</span>:<span class="w"> </span><span class="o">{}</span>,
+<span class="w">  </span><span class="s2">&quot;form&quot;</span>:<span class="w"> </span><span class="o">{}</span>,
+<span class="w">  </span><span class="s2">&quot;headers&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;Accept&quot;</span>:<span class="w"> </span><span class="s2">&quot;application/json&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Content-Length&quot;</span>:<span class="w"> </span><span class="s2">&quot;15&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Content-Type&quot;</span>:<span class="w"> </span><span class="s2">&quot;application/json&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;Host&quot;</span>:<span class="w"> </span><span class="s2">&quot;httpbin.org&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;User-Agent&quot;</span>:<span class="w"> </span><span class="s2">&quot;curl/8.7.1&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;X-Amzn-Trace-Id&quot;</span>:<span class="w"> </span><span class="s2">&quot;Root=1-67fbcfb6-417ccb074ddf1ed41b114fa6&quot;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;json&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;foo&quot;</span>:<span class="w"> </span><span class="s2">&quot;bar&quot;</span>
+<span class="w">  </span><span class="o">}</span>,
+<span class="w">  </span><span class="s2">&quot;origin&quot;</span>:<span class="w"> </span><span class="s2">&quot;181.94.226.181&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;url&quot;</span>:<span class="w"> </span><span class="s2">&quot;https://httpbin.org/post&quot;</span>
+<span class="o">}</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>
