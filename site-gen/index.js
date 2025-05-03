@@ -30,4 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
             filterByCategory(this.innerText);
         });
     });
+
+    document.addEventListener("keypress", (event) => {
+        if (event.key === '.') {
+            window.location = "https://github.dev/dalleng/til";
+        }
+    });
 });
