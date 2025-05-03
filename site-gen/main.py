@@ -43,7 +43,8 @@ class TILNote:
             for line in file:
                 # regex for lines starting with one or more '#', which would be titles
                 if match := re.match(r"^\#+\s*(.*)", line.strip()):
-                    return match.group(1).strip()
+                    title = match.group(1).strip()
+                    return re.sub(r"`([^`]*)`", r"<code>\1</code>", title) if "`" in title else title
         return None
 
     @property
