@@ -89,22 +89,22 @@ def parse_args() -> argparse.Namespace:
 
 def generate_html_files(markdown_files: list[str]):
     # Generate html files for each markdown file
-    tils = []
     md = markdown.Markdown(extensions=["fenced_code", "codehilite", "tables"])
     template = Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE)
     shutil.copy(INPUT_FOLDER / TIL_CSS, OUTPUT_FOLDER)
 
     for filepath in markdown_files:
         til = TILNote(filepath)
-        tils.append(til)
         html = til.to_html(md)
 
         output_filename = OUTPUT_FOLDER / f"{til.filename}.html"
         print(f"Output: {output_filename}")
 
         head_content = f'''
+        <meta name="category" content="{til.category}">
         <link rel="stylesheet" href="{SYNTAX_HIGHLIGHTING_CSS}" />
         <link rel="stylesheet" href="{TIL_CSS}" />
+        <script src="{INDEX_JS}"></script>
         '''
         template.write_to_file(
             output_filename, dict(head_content=head_content, body_content=html)
@@ -144,8 +144,10 @@ def generate_index(markdown_files: list[str]):
     # copy 'base_styles.css' from ./site-gen to ./site
     shutil.copy(INPUT_FOLDER / INDEX_CSS, OUTPUT_FOLDER)
     shutil.copy(INPUT_FOLDER / "index.js", OUTPUT_FOLDER)
-    head_content = f'<link rel="stylesheet" href="site/{INDEX_CSS}" />'
-    head_content += f'<script src="site/{INDEX_JS}"></script>'
+    head_content = f"""
+    <link rel="stylesheet" href="site/{INDEX_CSS}" />
+    <script src="site/{INDEX_JS}"></script>
+    """
 
     Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE).write_to_file(
         ROOT_DIR / "index.html",

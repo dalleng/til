@@ -32,8 +32,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.addEventListener("keypress", (event) => {
+        const baseURL = "https://github.dev/dalleng/til"
+        let goToURL = baseURL;
+        if (window.location.pathname.startsWith("/site")) {
+            const category = document.querySelector("meta[name='category']").content;
+            const htmlPath = window.location.pathname.split('/').at(-1);
+            const [title, _] = htmlPath.split('.');
+            const filePath = `/blob/main/${category}/${title}.md`;
+            goToURL = baseURL + filePath;
+        }
         if (event.key === '.') {
-            window.location = "https://github.dev/dalleng/til";
+            window.location = goToURL;
         }
     });
 });
