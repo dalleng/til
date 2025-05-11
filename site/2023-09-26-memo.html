@@ -19,6 +19,9 @@
 <p><code>memo</code> let's you skip re-rendering a component if its props did not change. The component returned from the <code>memo</code>
 function is said to be memoized. Normally in React all child components are re-rendered when their parent component
 re-renders, that is not the case for memoized components as long as their props haven't changed.</p>
+<p><code>memo(Component, arePropsEqual?)</code></p>
+<p>The second argument <code>arePropsEqual</code> let's you supply a function with custom logic to evaluate equality. The default equality comparison
+uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is"><code>Object.is</code></a>.</p>
 <p><a href="https://react.dev/reference/react/memo">Source</a></p>
     </div>
   </body>
