@@ -16,7 +16,7 @@
   <body>
     <div class="container" style="margin-top: 20px">
       <h1>Dictionary view objects</h1>
-<p>The objects returned by dict.keys(), dict.values() and dict.items() are view objects.
+<p>The objects returned by <code>dict.keys()</code>, <code>dict.values()</code> and <code>dict.items()</code> are view objects.
 They provide a dynamic view on the dictionary’s entries, which means that when the dictionary changes, the view reflects these changes.</p>
 <p><code>iter(dictview)</code> can be used to get an iterator. See the following example:</p>
 <div class="codehilite"><pre><span></span><code><span class="c">In </span><span class="k">[</span><span class="c">1</span><span class="k">]</span><span class="c">: d = {&#39;foo&#39;: &#39;bar&#39;}</span>
