@@ -1,6 +1,6 @@
 # Dictionary view objects
 
-The objects returned by dict.keys(), dict.values() and dict.items() are view objects.
+The objects returned by `dict.keys()`, `dict.values()` and `dict.items()` are view objects.
 They provide a dynamic view on the dictionary’s entries, which means that when the dictionary changes, the view reflects these changes.
 
 `iter(dictview)` can be used to get an iterator. See the following example:
