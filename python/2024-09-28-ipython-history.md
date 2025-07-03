@@ -1,4 +1,4 @@
-# %history magic function in ipython
+# `%history` magic function in ipython
 
 In an ipython REPL the `%history` magic function can be used to show command history and save it to a file.
 
