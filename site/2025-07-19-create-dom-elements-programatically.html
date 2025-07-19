@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="js">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Create DOM elements programatically</h1>
+<ul>
+<li>Create a div in memory:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">div</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+<ul>
+<li>Set attributes and class:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="nx">div</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;my-div&#39;</span><span class="p">);</span>
+<span class="nx">div</span><span class="p">.</span><span class="nx">className</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;my-class&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+<ul>
+<li>Add it to the DOM:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+<span class="c1">// or use any other container instead of body</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#element-with-id&#39;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+</code></pre></div>
+
+<ul>
+<li>
+<p>Clear the div’s contents:</p>
+</li>
+<li>
+<p><code>div.innerHTML = ''</code> – clears all content</p>
+</li>
+<li><code>div.textContent = ''</code> – safer if just text</li>
+<li><code>div.replaceChildren()</code> – modern &amp; clean</li>
+</ul>
+    </div>
+  </body>
+</html>
