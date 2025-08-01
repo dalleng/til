@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="python">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1><code>str.partition</code></h1>
+<p>This method of <code>str</code> partitions a string into three parts if the separator passed as a parameter is found.
+The 3-tuple returned as a result includes the text before the separator, the separator, and the text after the separator.</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;article:10309&#39;</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;10309&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>If the separator is not found, return a 3-tuple containing the string itself, followed by two empty strings.</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="s1">&#39;ab&#39;</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="s1">&#39;ab&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a href="https://docs.python.org/3/library/stdtypes.html#str.partition">Source</a></p>
+    </div>
+  </body>
+</html>
