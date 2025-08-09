@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="postgresql">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Change table display mode in <code>psql</code> and <code>pgcli</code></h1>
+<p>In <code>psql</code>, the <code>\x</code> command toggles <em>expanded display mode</em>. When enabled, each row is displayed vertically rather than horizontally, which makes columns with long values easier to read.</p>
+<p>In <code>pgcli</code>, <code>\x</code> works the same way, but there’s also a more versatile command: <code>\T &lt;table_display_mode&gt;</code>.<br />
+This lets you choose from multiple output formats — for example:
+- <code>vertical</code> (equivalent to <code>\x</code>)
+- <code>html</code>
+- <code>csv</code>
+- <code>insert</code>
+- <code>update</code></p>
+<p>These modes can make it easier to copy results into other tools or scripts.</p>
+    </div>
+  </body>
+</html>
