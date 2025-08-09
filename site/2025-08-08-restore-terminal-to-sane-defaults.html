@@ -16,8 +16,7 @@
   <body>
     <div class="container" style="margin-top: 20px">
       <h1>Use <code>stty sane</code> to restore terminal</h1>
-<p><code>stty sane</code> restores the terminal to its default “sane” settings.<br />
-I find it particularly useful when a process changes the terminal configuration and doesn’t reset it on exit.<br />
+<p><code>stty sane</code> restores the terminal to its default “sane” settings. I find it particularly useful when a process changes the terminal configuration and doesn’t reset it on exit.<br />
 A common symptom is that pressing <code>Ctrl+C</code> no longer sends <code>SIGINT</code> to the foreground process — instead, <code>^C</code> is echoed to the screen because signal generation (<code>isig</code>) was disabled.</p>
     </div>
   </body>
