@@ -1,0 +1,6 @@
+# Running a python script from a REPL session
+
+```python
+>>> import runpy
+>>> runpy.run_path('my_script.py')
+```
