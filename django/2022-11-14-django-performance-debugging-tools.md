@@ -18,9 +18,9 @@ Silk intercepts and stores HTTP requests and database queries before presenting 
 
 The only con of this project is that it stores http requests and queries in the DB, which can make the application slower if enabled on prod. Of course, an option would be to only enable it on development environments.
 
-(https://github.com/jazzband/django-silk)[https://github.com/jazzband/django-silk]
+[https://github.com/jazzband/django-silk](https://github.com/jazzband/django-silk)
 
 ## Django Query Inspect
 
 Logs repeated queries to the console. It can also display a traceback to where the queries occur in the codebase.
-(https://github.com/dobarkod/django-queryinspect)[https://github.com/dobarkod/django-queryinspect]
+[https://github.com/dobarkod/django-queryinspect](https://github.com/dobarkod/django-queryinspect)
