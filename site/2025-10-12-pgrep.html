@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="cli">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Pgrep to find PIDs by name</h1>
+<p>Without any options, <code>pgrep &lt;name&gt;</code> only returns the PIDs of processes matching the name <code>&lt;name&gt;</code>. For example:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pgrep<span class="w"> </span>vim<span class="w"> </span>
+<span class="m">23084</span>
+<span class="m">23085</span>
+</code></pre></div>
+
+<p>A more useful combination of flags is <code>-fl</code>:</p>
+<p><code>-f</code>: matches against the full argument list, not just the process name.
+<code>-l</code>: long output, also prints the process name. When combined with <code>-f</code> prints the whole argument list.</p>
+<p>Some examples:</p>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pgrep<span class="w"> </span>-l<span class="w"> </span>vim
+<span class="m">23084</span><span class="w"> </span>nvim
+<span class="m">23085</span><span class="w"> </span>nvim
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pgrep<span class="w"> </span>-fl<span class="w"> </span>vim
+<span class="m">23084</span><span class="w"> </span>lvim<span class="w"> </span>-u<span class="w"> </span>/Users/diegoallen/.local/share/lunarvim/lvim/init.lua<span class="w"> </span>main.go
+<span class="m">23085</span><span class="w"> </span>lvim<span class="w"> </span>--embed<span class="w"> </span>-u<span class="w"> </span>/Users/diegoallen/.local/share/lunarvim/lvim/init.lua<span class="w"> </span>main.go
+</code></pre></div>
+    </div>
+  </body>
+</html>
