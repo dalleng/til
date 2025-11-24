@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="sqlalchemy">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Get the corresponding SQL from a query object</h1>
+<h1>For SQLAlchemy 1.x (ORM query objects)</h1>
+<div class="codehilite"><pre><span></span><code>compiled = query.statement.compile(dialect=query.session.bind.dialect)
+print(str(compiled))       # SQL with :param_1 etc.
+print(compiled.params)     # The actual parameter values
+</code></pre></div>
+
+<h2>SQLAlchemy 2.x (select() style)</h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.sql</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">select</span>
+
+<span class="n">stmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+<span class="w">    </span><span class="n">stmt</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+<span class="w">        </span><span class="n">compile_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;literal_binds&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">True</span><span class="p">},</span>
+<span class="w">        </span><span class="n">dialect</span><span class="o">=</span><span class="n">engine</span><span class="o">.</span><span class="n">dialect</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<h2>Wrapper for both</h2>
+<div class="codehilite"><pre><span></span><code>def to_sql(query):
+    if hasattr(query, &quot;statement&quot;):  # legacy ORM Query
+        stmt = query.statement
+        dialect = query.session.bind.dialect
+    else:
+        stmt = query
+        dialect = query.bind.dialect
+
+    return str(stmt.compile(
+        dialect=dialect,
+        compile_kwargs={&quot;literal_binds&quot;: True}
+    ))
+</code></pre></div>
+    </div>
+  </body>
+</html>
