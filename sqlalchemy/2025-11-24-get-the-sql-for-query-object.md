@@ -2,7 +2,7 @@
 
 # For SQLAlchemy 1.x (ORM query objects)
 
-```
+```python
 compiled = query.statement.compile(dialect=query.session.bind.dialect)
 print(str(compiled))       # SQL with :param_1 etc.
 print(compiled.params)     # The actual parameter values
@@ -10,7 +10,7 @@ print(compiled.params)     # The actual parameter values
 
 ## SQLAlchemy 2.x (select() style)
 
-```
+```python
 from sqlalchemy.sql import select
 
 stmt = select(User).where(User.id == 5)
@@ -25,7 +25,7 @@ print(
 
 ## Wrapper for both
 
-```
+```python
 def to_sql(query):
     if hasattr(query, "statement"):  # legacy ORM Query
         stmt = query.statement
