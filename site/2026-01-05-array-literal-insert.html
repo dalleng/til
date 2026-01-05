@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="postgresql">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>How to insert array literals</h1>
+<div class="codehilite"><pre><span></span><code><span class="n">diegoallen</span><span class="o">@/</span><span class="n">tmp</span><span class="p">:</span><span class="n">diegoallen</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">arr_example</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="w"> </span><span class="nb">text</span><span class="p">[]);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span>
+<span class="k">Time</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">006</span><span class="n">s</span>
+<span class="n">diegoallen</span><span class="o">@/</span><span class="n">tmp</span><span class="p">:</span><span class="n">diegoallen</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">arr_example</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="k">values</span>
+<span class="w"> </span><span class="p">(</span><span class="nb">array</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]),</span>
+<span class="w"> </span><span class="p">(</span><span class="nb">array</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">]),</span>
+<span class="w"> </span><span class="p">(</span><span class="nb">array</span><span class="p">[]::</span><span class="nb">text</span><span class="p">[]),</span>
+<span class="w"> </span><span class="p">(</span><span class="k">null</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span>
+<span class="k">Time</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">001</span><span class="n">s</span>
+<span class="n">diegoallen</span><span class="o">@/</span><span class="n">tmp</span><span class="p">:</span><span class="n">diegoallen</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">arr_example</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">----------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">arr</span><span class="w">            </span><span class="o">|</span>
+<span class="o">|</span><span class="c1">----------------|</span>
+<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">]</span><span class="w">        </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="p">[]</span><span class="w">             </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="o">&lt;</span><span class="k">null</span><span class="o">&gt;</span><span class="w">         </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------+</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="mi">4</span>
+<span class="k">Time</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">003</span><span class="n">s</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>
