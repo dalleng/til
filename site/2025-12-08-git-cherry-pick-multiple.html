@@ -16,17 +16,13 @@
   <body>
     <div class="container" style="margin-top: 20px">
       <h1>Cherry-pick multiple commits</h1>
-<ul>
-<li>If the commits are contiguous, you can use <code>git cherry-pick &lt;start&gt;..&lt;end&gt;</code>.<br />
-  The left side of the range is exclusive, so if you want <code>&lt;start&gt;</code> to be included, you need to use <code>^</code>, like this:<br />
-<code>git cherry-pick &lt;start&gt;^..&lt;end&gt;</code>.</li>
-</ul>
+<h2>If the commits are contiguous, you can use <code>git cherry-pick &lt;start&gt;..&lt;end&gt;</code>.</h2>
+<p>The left side of the range is exclusive, so if you want <code>&lt;start&gt;</code> to be included, you need to use <code>^</code>, like this:<br />
+<code>git cherry-pick &lt;start&gt;^..&lt;end&gt;</code>.</p>
 <p>Example:<br />
 <code>git cherry-pick 4775d641284769b2f5d7cd1e107621cdc3712c9c^..c98a582cc7edae01cb0845f00adda965b8f3f8c3</code></p>
-<ul>
-<li>If the commits are not contiguous, list them explicitly:<br />
-<code>git cherry-pick &lt;commit1&gt; &lt;commit2&gt; ... &lt;commitN&gt;</code>.</li>
-</ul>
+<h2>If the commits are not contiguous, list them explicitly:</h2>
+<p><code>git cherry-pick &lt;commit1&gt; &lt;commit2&gt; ... &lt;commitN&gt;</code>.</p>
     </div>
   </body>
 </html>
