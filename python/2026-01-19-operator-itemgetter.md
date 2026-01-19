@@ -3,7 +3,7 @@
 The `operator` module in the python standard library implements operators (+, -, >, < and several others) as functions.
 
 `itemgetter` is a function that implements fetching elements from its operand. Similar to how `[]` is used to access
-elements insides dictionaries or list using keys or indices. 
+elements inside dictionaries or list using keys or indices. 
 
 ## Basic example
 
