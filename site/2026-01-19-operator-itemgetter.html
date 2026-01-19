@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="python">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>The <code>itemgetter</code> function from the <code>operator</code> module.</h1>
+<p>The <code>operator</code> module in the python standard library implements operators (+, -, &gt;, &lt; and several others) as functions.</p>
+<p><code>itemgetter</code> is a function that implements fetching elements from its operand. Similar to how <code>[]</code> is used to access
+elements insides dictionaries or list using keys or indices. </p>
+<h2>Basic example</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">la_liga_players</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Lamine Yamal&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s1">&#39;team&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;FC Barcelona&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;Barcelona&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="s1">&#39;Spain&#39;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Mike Oyarzabal&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;number&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="s1">&#39;team&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Real Sociedad&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;city&#39;</span><span class="p">:</span> <span class="s1">&#39;San Sebastian&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="s1">&#39;Spain&#39;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">]</span>
+<span class="c1"># get a value using a list index</span>
+<span class="n">first_getter</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">first_getter</span><span class="p">(</span><span class="n">la_liga_players</span><span class="p">)</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># get multiple values using list indices</span>
+<span class="n">first_and_second_getter</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">first_and_second_getter</span><span class="p">(</span><span class="n">la_liga_players</span><span class="p">)</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># get a value using a key dict</span>
+<span class="n">name_getter</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">player</span> <span class="ow">in</span> <span class="n">la_liga_players</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name_getter</span><span class="p">(</span><span class="n">player</span><span class="p">)</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># get multiple values using key dics</span>
+<span class="n">name_and_club_getter</span> <span class="o">=</span> <span class="n">itemgetter</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;team&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">player</span> <span class="ow">in</span> <span class="n">la_liga_players</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name_and_club_getter</span><span class="p">(</span><span class="n">player</span><span class="p">)</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<div class="codehilite"><pre><span></span><code>first_getter<span class="o">(</span>la_liga_players<span class="o">)={</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Lamine Yamal&#39;</span>,<span class="w"> </span><span class="s1">&#39;number&#39;</span>:<span class="w"> </span><span class="m">10</span>,<span class="w"> </span><span class="s1">&#39;team&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;FC Barcelona&#39;</span>,<span class="w"> </span><span class="s1">&#39;location&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;city&#39;</span>:<span class="w"> </span><span class="s1">&#39;Barcelona&#39;</span>,<span class="w"> </span><span class="s1">&#39;country&#39;</span>:<span class="w"> </span><span class="s1">&#39;Spain&#39;</span><span class="o">}}}</span>
+
+first_and_second_getter<span class="o">(</span>la_liga_players<span class="o">)=({</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Lamine Yamal&#39;</span>,<span class="w"> </span><span class="s1">&#39;number&#39;</span>:<span class="w"> </span><span class="m">10</span>,<span class="w"> </span><span class="s1">&#39;team&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;FC Barcelona&#39;</span>,<span class="w"> </span><span class="s1">&#39;location&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;city&#39;</span>:<span class="w"> </span><span class="s1">&#39;Barcelona&#39;</span>,<span class="w"> </span><span class="s1">&#39;country&#39;</span>:<span class="w"> </span><span class="s1">&#39;Spain&#39;</span><span class="o">}}}</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Mike Oyarzabal&#39;</span>,<span class="w"> </span><span class="s1">&#39;number&#39;</span>:<span class="w"> </span><span class="m">10</span>,<span class="w"> </span><span class="s1">&#39;team&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Real Sociedad&#39;</span>,<span class="w"> </span><span class="s1">&#39;location&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;city&#39;</span>:<span class="w"> </span><span class="s1">&#39;San Sebastian&#39;</span>,<span class="w"> </span><span class="s1">&#39;country&#39;</span>:<span class="w"> </span><span class="s1">&#39;Spain&#39;</span><span class="o">}}})</span>
+
+name_getter<span class="o">(</span>player<span class="o">)=</span><span class="s1">&#39;Lamine Yamal&#39;</span>
+name_getter<span class="o">(</span>player<span class="o">)=</span><span class="s1">&#39;Mike Oyarzabal&#39;</span>
+
+name_and_club_getter<span class="o">(</span>player<span class="o">)=(</span><span class="s1">&#39;Lamine Yamal&#39;</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;FC Barcelona&#39;</span>,<span class="w"> </span><span class="s1">&#39;location&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;city&#39;</span>:<span class="w"> </span><span class="s1">&#39;Barcelona&#39;</span>,<span class="w"> </span><span class="s1">&#39;country&#39;</span>:<span class="w"> </span><span class="s1">&#39;Spain&#39;</span><span class="o">}})</span>
+name_and_club_getter<span class="o">(</span>player<span class="o">)=(</span><span class="s1">&#39;Mike Oyarzabal&#39;</span>,<span class="w"> </span><span class="o">{</span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="s1">&#39;Real Sociedad&#39;</span>,<span class="w"> </span><span class="s1">&#39;location&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;city&#39;</span>:<span class="w"> </span><span class="s1">&#39;San Sebastian&#39;</span>,<span class="w"> </span><span class="s1">&#39;country&#39;</span>:<span class="w"> </span><span class="s1">&#39;Spain&#39;</span><span class="o">}})</span>
+</code></pre></div>
+
+<h2>Advanced example</h2>
+<p>The example below shows the implementation of a function that can follow and retrieve elements from a nested object
+composed of dictionaries and lists.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">nestedgetter</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve a nested value from a list/dict structure by successively</span>
+<span class="sd">    applying keys or indices.</span>
+
+<span class="sd">    Starting from `obj`, each element in `items` is applied in order using</span>
+<span class="sd">    `operator.itemgetter`, so each key/index is looked up on the result of</span>
+<span class="sd">    the previous step.</span>
+
+<span class="sd">    This is equivalent to:</span>
+<span class="sd">        result = obj</span>
+<span class="sd">        for key in items:</span>
+<span class="sd">            result = result[key]</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    obj : list | dict</span>
+<span class="sd">        The root object to traverse. Must support indexing via `[]`.</span>
+<span class="sd">    items : list</span>
+<span class="sd">        A sequence of keys or indices used to access nested elements.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Any</span>
+<span class="sd">        The value found at the nested path defined by `items`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    KeyError</span>
+<span class="sd">        If a key is missing in a dictionary.</span>
+<span class="sd">    IndexError</span>
+<span class="sd">        If an index is out of range in a list.</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If an intermediate value does not support indexing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">result</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">itemgetter</span><span class="p">(</span><span class="n">key</span><span class="p">)(</span><span class="n">result</span><span class="p">),</span> <span class="n">items</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nestedgetter</span><span class="p">(</span><span class="n">la_liga_players</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;name&#39;</span><span class="p">])</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nestedgetter</span><span class="p">(</span><span class="n">la_liga_players</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;team&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;location&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;city&#39;</span><span class="p">])</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Output</p>
+<div class="codehilite"><pre><span></span><code>nestedgetter<span class="o">(</span>la_liga_players,<span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="s1">&#39;name&#39;</span><span class="o">])=</span><span class="s1">&#39;Lamine Yamal&#39;</span>
+nestedgetter<span class="o">(</span>la_liga_players,<span class="w"> </span><span class="o">[</span><span class="m">1</span>,<span class="w"> </span><span class="s1">&#39;team&#39;</span>,<span class="w"> </span><span class="s1">&#39;location&#39;</span>,<span class="w"> </span><span class="s1">&#39;city&#39;</span><span class="o">])=</span><span class="s1">&#39;San Sebastian&#39;</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>
