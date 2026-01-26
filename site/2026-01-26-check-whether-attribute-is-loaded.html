@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="sqlalchemy">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Check whether an attribute has been loaded</h1>
+<p>The <code>inspect</code> function from SQLAlchemy can be used to inspect ORM instances and determine whether a relationship
+(or deferred attribute) has been loaded from the database.</p>
+<p>This is commonly done to:
+- avoid accidentally triggering lazy loads
+- prevent N+1 queries
+- ensure it’s safe to serialize ORM objects without hitting the database</p>
+<p>Example:</p>
+<p>```python
+from sqlalchemy import create_engine, select, inspect
+from sqlalchemy.orm import Session</p>
+<p>engine = create_engine(
+    "postgresql+psycopg://postgres:postgres@localhost:5432/postgres",
+    echo=True,  # log SQL to stdout
+)</p>
+<p>with Session(engine) as session:
+    user = session.scalars(select(User)).one()
+    print(inspect(user).unloaded)  # attributes that have not been loaded</p>
+<p><a href="https://docs.sqlalchemy.org/en/21/orm/mapping_styles.html#inspection-of-mapped-instances">Source</a></p>
+    </div>
+  </body>
+</html>
