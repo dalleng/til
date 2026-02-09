@@ -26,8 +26,9 @@ jobs:
     - name: Detect changed files
       id: changed_files
       run: |
-        echo $(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '\.md$')
-        echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '\.md$')" >> "$GITHUB_OUTPUT"
+        files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '\.md$' | tr '\n' ' ')
+        echo "files=$files"
+        echo "files=$files" >> "$GITHUB_OUTPUT"
 
     - name: Run script
       run: python site-gen/main.py --files ${{ steps.changed_files.outputs.files }}
