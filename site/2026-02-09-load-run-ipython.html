@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="python">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Load or run python files from <code>ipython</code></h1>
+<p>Let's say we have a file, <code>hello_world.py</code> with the following content.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+
+<h2>Import code into an <code>ipython</code> REPL</h2>
+<p>Use <code>%load</code> to load the file content into the REPL. It does not execute until you press enter. It is basically
+like pasting the content of the file.</p>
+<div class="codehilite"><pre><span></span><code>In<span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:<span class="w"> </span>%load<span class="w"> </span>hello_world.py
+
+In<span class="w"> </span><span class="o">[</span><span class="m">2</span><span class="o">]</span>:<span class="w"> </span><span class="c1"># %load hello_world.py</span>
+<span class="w">   </span>...:<span class="w"> </span>def<span class="w"> </span>main<span class="o">()</span>:
+<span class="w">   </span>...:<span class="w">     </span>print<span class="o">(</span><span class="s2">&quot;Hello World&quot;</span><span class="o">)</span>
+<span class="w">   </span>...:
+<span class="w">   </span>...:
+<span class="w">   </span>...:<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;__main__&quot;</span>:
+<span class="w">   </span>...:<span class="w">     </span>main<span class="o">()</span>
+<span class="w">   </span>...:
+Hello<span class="w"> </span>World
+</code></pre></div>
+
+<h2>Run code in the <code>ipython</code> REPL</h2>
+<p><code>%run</code> executes the code in the file directly without pasting its content into the REPL. </p>
+<div class="codehilite"><pre><span></span><code>In<span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:<span class="w"> </span>%run<span class="w"> </span>hello_world.py
+Hello<span class="w"> </span>World
+</code></pre></div>
+    </div>
+  </body>
+</html>

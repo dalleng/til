@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="css">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1><code>box-sizing: border-box</code> in CSS</h1>
+<p>In CSS the default behavior is that padding and borders make elements take more space. For example:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">div</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>The rendered div will actually be of <code>220px</code> of height and width.</p>
+<p>The behavior most people expect of padding and borders being part of the height and width defined is achieve by using <code>box-sizing: border-box</code>. With <code>box-sizing: border-box</code>:</p>
+<ul>
+<li>Width and height include content + padding + border</li>
+<li>Adding a border does not increase the outer size</li>
+<li>Content shrinks instead</li>
+</ul>
+<h2>Set predictable layouts</h2>
+<p>The snippet below applies <code>box-sizing: border-box</code> to all layout boxes making widht and height predictable.</p>
+<div class="codehilite"><pre><span></span><code><span class="o">*,</span>
+<span class="o">*</span><span class="p">::</span><span class="nd">before</span><span class="o">,</span>
+<span class="o">*</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">box-sizing</span><span class="p">:</span><span class="w"> </span><span class="kc">border-box</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>
