@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="python">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>The <code>__file__</code> attribute in python</h1>
+<p>In Python modules and packages have the <code>__file__</code> attribute which is a string with the absolute path of the file with the module
+or the <code>__init__.py</code> of the package. It could also be the <code>.so</code> file of a compiled extension module.</p>
+<p>Examples:</p>
+<div class="codehilite"><pre><span></span><code>In<span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:<span class="w"> </span>import<span class="w"> </span>collections
+
+In<span class="w"> </span><span class="o">[</span><span class="m">2</span><span class="o">]</span>:<span class="w"> </span>collections.__file__
+Out<span class="o">[</span><span class="m">2</span><span class="o">]</span>:<span class="w"> </span><span class="s1">&#39;/Users/diegoallen/.asdf/installs/python/3.11.1/lib/python3.11/collections/__init__.py&#39;</span>
+
+In<span class="w"> </span><span class="o">[</span><span class="m">3</span><span class="o">]</span>:<span class="w"> </span>import<span class="w"> </span>inspect
+
+In<span class="w"> </span><span class="o">[</span><span class="m">4</span><span class="o">]</span>:<span class="w"> </span>inspect.__file__
+Out<span class="o">[</span><span class="m">4</span><span class="o">]</span>:<span class="w"> </span><span class="s1">&#39;/Users/diegoallen/.asdf/installs/python/3.11.1/lib/python3.11/inspect.py&#39;</span>
+
+In<span class="w"> </span><span class="o">[</span><span class="m">5</span><span class="o">]</span>:<span class="w"> </span>import<span class="w"> </span>math
+
+In<span class="w"> </span><span class="o">[</span><span class="m">6</span><span class="o">]</span>:<span class="w"> </span>math.__file__
+Out<span class="o">[</span><span class="m">6</span><span class="o">]</span>:<span class="w"> </span><span class="s1">&#39;/Users/diegoallen/.asdf/installs/python/3.11.1/lib/python3.11/lib-dynload/math.cpython-311-darwin.so&#39;</span>
+</code></pre></div>
+
+<p>It can be very useful to quickly locate a virtualenv and check the code of either standard library modules or third party dependencies.</p>
+    </div>
+  </body>
+</html>
