@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="python">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1><code>inspect.get_file</code> function</h1>
+<p>The <code>inspect.get_file(object)</code> in Python returns the name of the file in which the object has been defined. Very useful to quickly
+access and check the source code of standard library objects and functions and also third party dependencies. Example:</p>
+<div class="codehilite"><pre><span></span><code>In<span class="w"> </span><span class="o">[</span><span class="m">1</span><span class="o">]</span>:<span class="w"> </span>from<span class="w"> </span>collections<span class="w"> </span>import<span class="w"> </span>deque
+
+In<span class="w"> </span><span class="o">[</span><span class="m">2</span><span class="o">]</span>:<span class="w"> </span>inspect.getfile<span class="o">(</span>deque<span class="o">)</span>
+Out<span class="o">[</span><span class="m">2</span><span class="o">]</span>:<span class="w"> </span><span class="s1">&#39;/Users/diegoallen/.asdf/installs/python/3.11.1/lib/python3.11/collections/__init__.py&#39;</span>
+</code></pre></div>
+
+<p><a href="https://docs.python.org/3/library/inspect.html#inspect.getfile">Source</a></p>
+    </div>
+  </body>
+</html>
