@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="postgresql">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Import/Export a table</h1>
+<p>Using the <code>\copy</code> command in <code>psql</code></p>
+<h2>Export a table</h2>
+<p><code>\copy table to '/some-path/table.csv' with (format csv, header)</code></p>
+<p><strong>with a query</strong></p>
+<p><code>\copy (select * from table) to '/some-path/table.csv' with (format csv, header)</code></p>
+<p><strong>using binary format</strong></p>
+<p><code>\copy (select * from table) to '/some-path/table.bin' with (format binary)</code></p>
+<p><strong>Import a table</strong></p>
+<p><code>\copy table from '/some-path/table.csv' with (format csv, header)</code></p>
+    </div>
+  </body>
+</html>
