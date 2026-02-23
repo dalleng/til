@@ -19,10 +19,10 @@
 <h2>Check the size of a database</h2>
 <p><code>select pg_size_pretty(pg_database_size('db_name'))</code></p>
 <h2>Check the size of a table</h2>
-<h3>Total size (Data + Indices + TOAST)</h3>
+<p><strong>Total size (Data + Indices + TOAST)</strong></p>
 <p><code>SELECT pg_size_pretty(pg_total_relation_size('public.your_table'));</code></p>
 <p>TOAST is Postgres’s mechanism for automatically compressing and offloading oversized column values into a hidden side table so rows can still fit within the 8KB page limit. It’s used when a row contains large values—typically in columns like TEXT, JSONB, BYTEA, large VARCHAR, or arrays.</p>
-<h3>Show sizes separately</h3>
+<p><strong>Show sizes separately</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="k">SELECT</span>
 <span class="w">  </span><span class="n">pg_size_pretty</span><span class="p">(</span><span class="n">pg_relation_size</span><span class="p">(</span><span class="s1">&#39;public.your_table&#39;</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">table_size</span><span class="p">,</span>
 <span class="w">  </span><span class="n">pg_size_pretty</span><span class="p">(</span><span class="n">pg_indexes_size</span><span class="p">(</span><span class="s1">&#39;public.your_table&#39;</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">indexes_size</span><span class="p">,</span>
