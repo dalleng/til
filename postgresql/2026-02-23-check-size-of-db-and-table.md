@@ -6,13 +6,13 @@
 
 ## Check the size of a table
 
-### Total size (Data + Indices + TOAST)
+**Total size (Data + Indices + TOAST)**
 
 `SELECT pg_size_pretty(pg_total_relation_size('public.your_table'));`
 
 TOAST is Postgres’s mechanism for automatically compressing and offloading oversized column values into a hidden side table so rows can still fit within the 8KB page limit. It’s used when a row contains large values—typically in columns like TEXT, JSONB, BYTEA, large VARCHAR, or arrays.
 
-### Show sizes separately
+**Show sizes separately**
 
 ```sql
 SELECT
