@@ -19,7 +19,7 @@ The behavior most people expect of padding and borders being part of the height 
 
 ## Set predictable layouts
 
-The snippet below applies `box-sizing: border-box` to all layout boxes making widht and height predictable.
+The snippet below applies `box-sizing: border-box` to all layout boxes making width and height predictable.
 
 ```
 *,
