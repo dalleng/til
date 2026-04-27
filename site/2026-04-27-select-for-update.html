@@ -20,8 +20,10 @@
 executing a <code>SELECT ... FOR UPDATE</code>, <code>UPDATE</code>, or <code>DELETE</code> on those rows wait for the lock. How long they wait depends on the
 <code>lock_timeout</code> and <code>statement_timeout</code> settings. In the case of <code>SELECT ... FOR UPDATE</code>, the behavior can be customized using
 <code>SKIP LOCKED</code> and <code>NOWAIT</code>.</p>
-<p><code>SKIP LOCKED</code>: Skips the locked rows as if they didn't match the criteria in the <code>WHERE</code> clause.
-<code>NOWAIT</code>: Throws an error immediately if any of the rows are locked.</p>
+<ul>
+<li><code>SKIP LOCKED</code>: Skips the locked rows as if they didn't match the criteria in the <code>WHERE</code> clause.</li>
+<li><code>NOWAIT</code>: Throws an error immediately if any of the rows are locked.</li>
+</ul>
     </div>
   </body>
 </html>
