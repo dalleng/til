@@ -5,5 +5,5 @@ executing a `SELECT ... FOR UPDATE`, `UPDATE`, or `DELETE` on those rows wait fo
 `lock_timeout` and `statement_timeout` settings. In the case of `SELECT ... FOR UPDATE`, the behavior can be customized using
 `SKIP LOCKED` and `NOWAIT`.
 
-`SKIP LOCKED`: Skips the locked rows as if they didn't match the criteria in the `WHERE` clause.
-`NOWAIT`: Throws an error immediately if any of the rows are locked.
+- `SKIP LOCKED`: Skips the locked rows as if they didn't match the criteria in the `WHERE` clause.
+- `NOWAIT`: Throws an error immediately if any of the rows are locked.
