@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="postgresql">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Select rows for update</h1>
+<p><code>SELECT ... FOR UPDATE</code> creates a row-level lock on the returned rows until the transaction commits or rolls back. Other transactions
+executing a <code>SELECT ... FOR UPDATE</code>, <code>UPDATE</code>, or <code>DELETE</code> on those rows wait for the lock. How long they wait depends on the
+<code>lock_timeout</code> and <code>statement_timeout</code> settings. In the case of <code>SELECT ... FOR UPDATE</code>, the behavior can be customized using
+<code>SKIP LOCKED</code> and <code>NOWAIT</code>.</p>
+<p><code>SKIP LOCKED</code>: Skips the locked rows as if they didn't match the criteria in the <code>WHERE</code> clause.
+<code>NOWAIT</code>: Throws an error immediately if any of the rows are locked.</p>
+    </div>
+  </body>
+</html>
