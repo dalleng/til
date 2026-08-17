@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>TIL - til.diegoallen.me</title>
+    
+        <meta name="category" content="sql">
+        <link rel="stylesheet" href="highlighting.css" />
+        <link rel="stylesheet" href="til.css" />
+        <script src="index.js"></script>
+        
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <h1>Having to filter aggregates</h1>
+<p>The <code>having</code> keyword in SQL is used to filter aggregates. A SQL statement like <code>select count(*) from table where count(*) &gt; 8 group by column;</code> is invalid. The <code>where</code> clause can only be used to filter rows.</p>
+<p>Example:</p>
+<ul>
+<li>A <code>grades</code> table that records students fullnames and grades for different subjects.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">postgres</span><span class="o">@</span><span class="n">localhost</span><span class="p">:</span><span class="n">postgres</span><span class="o">&gt;</span><span class="w"> </span><span class="err">\</span><span class="n">d</span><span class="w"> </span><span class="n">grades</span>
+<span class="o">+</span><span class="c1">----------+-------------------+------------------------------------------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">Column</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">Type</span><span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="n">Modifiers</span><span class="w">                                            </span><span class="o">|</span>
+<span class="o">|</span><span class="c1">----------+-------------------+------------------------------------------------------|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="nb">integer</span><span class="w">           </span><span class="o">|</span><span class="w">  </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">nextval</span><span class="p">(</span><span class="s1">&#39;grades_id_seq&#39;</span><span class="p">::</span><span class="n">regclass</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">fullname</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="o">|</span><span class="w">                                                      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">grade</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="nb">smallint</span><span class="w">          </span><span class="o">|</span><span class="w">                                                      </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">subject</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="w"> </span><span class="o">|</span><span class="w">                                                      </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------+-------------------+------------------------------------------------------+</span>
+<span class="n">Indexes</span><span class="p">:</span>
+<span class="w">    </span><span class="ss">&quot;grades_pkey&quot;</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">btree</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+
+<span class="k">Time</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">011</span><span class="n">s</span>
+<span class="n">postgres</span><span class="o">@</span><span class="n">localhost</span><span class="p">:</span><span class="n">postgres</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">grades</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">----+--------------+-------+------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">fullname</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">subject</span><span class="w">    </span><span class="o">|</span>
+<span class="o">|</span><span class="c1">----+--------------+-------+------------|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">John</span><span class="w"> </span><span class="n">Doe</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="mi">6</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Math</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Jane</span><span class="w"> </span><span class="n">Doe</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Math</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">John</span><span class="w"> </span><span class="n">Jones</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">7</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Math</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">4</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Kate</span><span class="w"> </span><span class="n">Doe</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="mi">3</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Math</span><span class="w">       </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">5</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Tom</span><span class="w"> </span><span class="n">Jones</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">9</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Literature</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">6</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Kate</span><span class="w"> </span><span class="n">Strong</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">8</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Literature</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">7</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Hans</span><span class="w"> </span><span class="n">Black</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">9</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Literature</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">8</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Jack</span><span class="w"> </span><span class="n">Strong</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="mi">7</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Literature</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">9</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">Jack</span><span class="w"> </span><span class="n">Black</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mi">9</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Biology</span><span class="w">    </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Lilly</span><span class="w"> </span><span class="n">Strong</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">9</span><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">Biology</span><span class="w">    </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----+--------------+-------+------------+</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="mi">10</span>
+<span class="k">Time</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">004</span><span class="n">s</span>
+</code></pre></div>
+
+<ul>
+<li>Let's get all subjects with an avg grade of 5 or above</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">postgres</span><span class="o">@</span><span class="n">localhost</span><span class="p">:</span><span class="n">postgres</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">subject</span><span class="p">,</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">grades</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">subject</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">grade</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+--------------------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">subject</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">avg</span><span class="w">                </span><span class="o">|</span>
+<span class="o">|</span><span class="c1">------------+--------------------|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Literature</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">8</span><span class="p">.</span><span class="mi">2500000000000000</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Biology</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="mi">9</span><span class="p">.</span><span class="mi">0000000000000000</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+--------------------+</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="mi">2</span>
+<span class="k">Time</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">002</span><span class="n">s</span>
+</code></pre></div>
+
+<ul>
+<li>Let's get the subjects with more than 3 students.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">postgres</span><span class="o">@</span><span class="n">localhost</span><span class="p">:</span><span class="n">postgres</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">subject</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">grades</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">subject</span><span class="w"> </span><span class="k">having</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+-------+</span>
+<span class="o">|</span><span class="w"> </span><span class="n">subject</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="w"> </span><span class="o">|</span>
+<span class="o">|</span><span class="c1">------------+-------|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Math</span><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="mi">4</span><span class="w">     </span><span class="o">|</span>
+<span class="o">|</span><span class="w"> </span><span class="n">Literature</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">4</span><span class="w">     </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+-------+</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="mi">2</span>
+<span class="k">Time</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">004</span><span class="n">s</span>
+</code></pre></div>
+    </div>
+  </body>
+</html>
