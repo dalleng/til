@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1>Select rows for update</h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">postgresql · <time datetime="2026-04-27">2026-04-27</time></p><h1>Select rows for update</h1>
 <p><code>SELECT ... FOR UPDATE</code> creates a row-level lock on the returned rows until the transaction commits or rolls back. Other transactions
 executing a <code>SELECT ... FOR UPDATE</code>, <code>UPDATE</code>, or <code>DELETE</code> on those rows wait for the lock. How long they wait depends on the
 <code>lock_timeout</code> and <code>statement_timeout</code> settings. In the case of <code>SELECT ... FOR UPDATE</code>, the behavior can be customized using
@@ -23,7 +23,7 @@ executing a <code>SELECT ... FOR UPDATE</code>, <code>UPDATE</code>, or <code>DE
 <ul>
 <li><code>SKIP LOCKED</code>: Skips the locked rows as if they didn't match the criteria in the <code>WHERE</code> clause.</li>
 <li><code>NOWAIT</code>: Throws an error immediately if any of the rows are locked.</li>
-</ul>
+</ul></main>
     </div>
   </body>
 </html>

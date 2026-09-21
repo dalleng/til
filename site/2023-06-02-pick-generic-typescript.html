@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1><code>Pick</code> generic</h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">typescript · <time datetime="2023-06-02">2023-06-02</time></p><h1><code>Pick</code> generic</h1>
 <p>The <code>Pick</code> generic allows you to create a new type based on a subset of keys of an existing type. In the example below,
 the <code>TodoPreview</code> type includes the <code>title</code> and <code>completed</code> keys from the <code>Todo</code> interface, but not <code>description</code>.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">Todo</span><span class="w"> </span><span class="p">{</span>
@@ -33,7 +33,7 @@ the <code>TodoPreview</code> type includes the <code>title</code> and <code>comp
 </code></pre></div>
 
 <p>In more detail: <code>Pick&lt;T, K extends keyof T&gt;</code> is a generic that takes two type arguments. <code>T</code> is the type from which you want
-to pick properties. <code>K</code> is the properties you want to pick from <code>T</code>.</p>
+to pick properties. <code>K</code> is the properties you want to pick from <code>T</code>.</p></main>
     </div>
   </body>
 </html>

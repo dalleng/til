@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1>Check whether an attribute has been loaded</h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">sqlalchemy · <time datetime="2026-01-26">2026-01-26</time></p><h1>Check whether an attribute has been loaded</h1>
 <p>The <code>inspect</code> function from SQLAlchemy can be used to inspect ORM instances and determine whether a relationship
 (or deferred attribute) has been loaded from the database.</p>
 <p>This is commonly done to:
@@ -33,7 +33,7 @@ from sqlalchemy.orm import Session</p>
 <p>with Session(engine) as session:
     user = session.scalars(select(User)).one()
     print(inspect(user).unloaded)  # attributes that have not been loaded</p>
-<p><a href="https://docs.sqlalchemy.org/en/21/orm/mapping_styles.html#inspection-of-mapped-instances">Source</a></p>
+<p><a href="https://docs.sqlalchemy.org/en/21/orm/mapping_styles.html#inspection-of-mapped-instances">Source</a></p></main>
     </div>
   </body>
 </html>

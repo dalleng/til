@@ -16,17 +16,21 @@ function filterByCategory(category) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Select all span elements with the class 'tag' that are within a 'section'
-    const tags = document.querySelectorAll('section span.tag');
+    // Use native buttons so filtering also works with the keyboard.
+    const tags = document.querySelectorAll('.filters button.tag');
 
     // Add click event listener to each tag
     tags.forEach(tag => {
         tag.addEventListener('click', function() {
             // Remove the 'active' class from all tags in the section
-            tags.forEach(t => t.classList.remove('active'));
+            tags.forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-pressed', 'false');
+            });
             
             // Add the 'active' class to the clicked tag
             this.classList.add('active');
+            this.setAttribute('aria-pressed', 'true');
             filterByCategory(this.innerText);
         });
     });

@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1>CPU profiling with <code>cProfile</code></h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">python · <time datetime="2024-07-31">2024-07-31</time></p><h1>CPU profiling with <code>cProfile</code></h1>
 <p>Profile CPU usage, the stats printed include the different functions called, the number of times they were called
 and the time spent.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
@@ -31,7 +31,7 @@ and the time spent.</p>
     <span class="c1"># Use sort_stats(pstats.SortKey.CALLS) to sort by number of calls</span>
     <span class="n">stats</span> <span class="o">=</span> <span class="n">pstats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span><span class="n">profiler</span><span class="p">)</span><span class="o">.</span><span class="n">strip_dirs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_stats</span><span class="p">(</span><span class="s1">&#39;cumulative&#39;</span><span class="p">)</span>
     <span class="n">stats</span><span class="o">.</span><span class="n">print_stats</span><span class="p">()</span>
-</code></pre></div>
+</code></pre></div></main>
     </div>
   </body>
 </html>

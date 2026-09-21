@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1>Applying a stash without removing it from the list</h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">git · <time datetime="2024-09-14">2024-09-14</time></p><h1>Applying a stash without removing it from the list</h1>
 <p>The stash list could be used to store small changes that are frequently applied, but for some reason you do not want
 to commit.</p>
 <p><code>git stash list</code> can be used to check the stash list, which will return an output similar to the one below.</p>
@@ -27,7 +27,7 @@ stash@{2}: WIP on dev: 89abcde Yet another commit message
 <p>To check the changes in a specific stash entry, <code>git stash show -p stash@{0}</code> can be used (replace 0 for other entries in the list).
 To make it easier to identify changes in the stash list, you can add a message when pushing to the stash using <code>-m</code>. For example:
 <code>git stash -m "a message"</code>.</p>
-<p>Once the stash entry to be applied has been identified, you can use <code>git stash apply stash@{0}</code> (again, 0 can be replaced for some other entry).</p>
+<p>Once the stash entry to be applied has been identified, you can use <code>git stash apply stash@{0}</code> (again, 0 can be replaced for some other entry).</p></main>
     </div>
   </body>
 </html>

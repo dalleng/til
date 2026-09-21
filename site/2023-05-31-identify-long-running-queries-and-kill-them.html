@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1>Identify long running queries and kill them.</h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">postgresql · <time datetime="2023-05-31">2023-05-31</time></p><h1>Identify long running queries and kill them.</h1>
 <p>The pg_stat_activity table provides real-time information on active database sessions, including running queries, duration, user, and application. It’s useful for monitoring and troubleshooting performance issues.</p>
 <h2>Find Long-Running Queries</h2>
 <p>The following query identifies queries running for more than 5 minutes:</p>
@@ -47,7 +47,7 @@
 </code></pre></div>
 
 <p>Warning: This will forcefully terminate all active queries, which may cause disruptions.</p>
-<p><a href="https://medium.com/little-programming-joys/finding-and-killing-long-running-queries-on-postgres-7c4f0449e86d">Source</a></p>
+<p><a href="https://medium.com/little-programming-joys/finding-and-killing-long-running-queries-on-postgres-7c4f0449e86d">Source</a></p></main>
     </div>
   </body>
 </html>

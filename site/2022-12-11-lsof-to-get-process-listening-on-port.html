@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1>Lsof to get the process listening on a given port</h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">cli · <time datetime="2022-12-11">2022-12-11</time></p><h1>Lsof to get the process listening on a given port</h1>
 <p>To show all networking related to a given port:</p>
 <div class="codehilite"><pre><span></span><code>lsof<span class="w"> </span>-i<span class="w"> </span>TCP:port<span class="w"> </span><span class="c1"># port with specified protocol</span>
 lsof<span class="w"> </span>-i<span class="w"> </span>:22
@@ -30,7 +30,7 @@ all TCP connections opened by process with process id <code>&lt;pid&gt;</code>. 
 <p><code>-a</code> makes
 all conditions specified by the different flags be ANDed.</p>
 <div class="codehilite"><pre><span></span><code>lsof<span class="w"> </span>-i<span class="w"> </span>TCP<span class="w"> </span>-P<span class="w"> </span>-a<span class="w"> </span>-p<span class="w"> </span>&lt;pid&gt;
-</code></pre></div>
+</code></pre></div></main>
     </div>
   </body>
 </html>

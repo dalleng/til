@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1>What does <code>real</code>, <code>user</code> and <code>sys</code> from the output of <code>time</code> mean?</h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">cli · <time datetime="2024-02-28">2024-02-28</time></p><h1>What does <code>real</code>, <code>user</code> and <code>sys</code> from the output of <code>time</code> mean?</h1>
 <p>The time command found in linux and other *nix OSes output the amount of time a program took to run.
 The output is split into 3 categories, <code>real</code>, <code>user</code> and <code>sys</code>. For example:</p>
 <div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">time</span><span class="w"> </span>foo
@@ -36,7 +36,7 @@ sys<span class="w">         </span>0m0.004s
 <p>Sys is the amount of CPU time spent in the kernel within the process. This means executing CPU time spent in system calls within the kernel, as opposed to library code, which is still running in user-space. Like 'user', this is only CPU time used by the process. See below for a brief description of kernel mode (also known as 'supervisor' mode) and the system call mechanism.</p>
 </li>
 </ul>
-<p><a href="https://stackoverflow.com/a/556411/238365">Source</a></p>
+<p><a href="https://stackoverflow.com/a/556411/238365">Source</a></p></main>
     </div>
   </body>
 </html>

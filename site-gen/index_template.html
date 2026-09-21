@@ -1,15 +1,12 @@
 <header>
-<hgroup>
-  <h1>Diego Allen's TILs 📝</h1>
-  <p>Things I've learned in short concise notes.</p>
-</hgroup>
+  <h1>Diego Allen’s TILs</h1>
+  <p>Things I’ve learned, one short note at a time.</p>
+  <a href="https://github.com/dalleng/til">View the Markdown on GitHub ↗</a>
 </header>
 <main>
-<p>All notes are stored in markdown in <a href="https://github.com/dalleng/til">this</a> github repo.</p>
-<section>
-<div>Filter by category:</div>
-<span class="tag active">all</span>
-{categories_content}
-</section>
-{main_content}
+  <section class="filters" aria-label="Filter notes by category">
+    <button type="button" class="tag active" aria-pressed="true">all</button>
+    {categories_content}
+  </section>
+  {main_content}
 </main>

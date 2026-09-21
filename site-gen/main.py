@@ -107,7 +107,11 @@ def generate_html_files(markdown_files: list[str]):
         <script src="{INDEX_JS}"></script>
         '''
         template.write_to_file(
-            output_filename, dict(head_content=head_content, body_content=html)
+            output_filename, dict(head_content=head_content, body_content=(
+                '<main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div>'
+                f'<p class="note-meta">{til.category} · <time datetime="{til.created_at}">{til.created_at}</time></p>'
+                f'{html}</main>'
+            ))
         )
         md.reset()
 
@@ -116,9 +120,9 @@ def generate_index(markdown_files: list[str]):
     # Generate index.html
     tils = [TILNote(mf) for mf in markdown_files]
     tils.sort(reverse=True)
-    list_template = Template("<ul>{list_content}</ul>")
+    list_template = Template('<ul class="notes">{list_content}</ul>')
     list_item_template = Template(
-        '<li data-category="{category}"><span class="tag active">{category}</span> <a href="{url}">{title}</a> - <small>{created_at}</small></li>'
+        '<li data-category="{category}"><span class="tag">{category}</span><a href="{url}">{title}</a><time datetime="{created_at}">{created_at}</time></li>'
     )
     list_content = "\n".join(
         [
@@ -133,7 +137,7 @@ def generate_index(markdown_files: list[str]):
             for til in tils
         ]
     )
-    category_template = Template('<span class="tag">{category}</span>')
+    category_template = Template('<button type="button" class="tag" aria-pressed="false">{category}</button>')
     categories = list({til.category for til in tils})
     categories_content = ' '.join(category_template.render(dict(category=category)) for category in sorted(categories))
     main_content = list_template.render(dict(list_content=list_content))
@@ -145,6 +149,7 @@ def generate_index(markdown_files: list[str]):
     shutil.copy(INPUT_FOLDER / INDEX_CSS, OUTPUT_FOLDER)
     shutil.copy(INPUT_FOLDER / "index.js", OUTPUT_FOLDER)
     head_content = f"""
+    <link rel="stylesheet" href="site/{TIL_CSS}" />
     <link rel="stylesheet" href="site/{INDEX_CSS}" />
     <script src="site/{INDEX_JS}"></script>
     """

@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1>Check Latency with <code>curl</code></h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">http · <time datetime="2024-11-18">2024-11-18</time></p><h1>Check Latency with <code>curl</code></h1>
 <p>You can measure the time it takes to complete a request using the <code>-w</code> (write-out) option with specific variables for timing.</p>
 <h2>Example</h2>
 <div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;DNS lookup: %{time_namelookup}s\nConnect: %{time_connect}s\nPre-transfer: %{time_pretransfer}s\nStart-transfer: %{time_starttransfer}s\nTotal time: %{time_total}s\n&quot;</span><span class="w"> </span><span class="s2">&quot;https://httpbin.org/uuid&quot;</span>
@@ -43,7 +43,7 @@
 <h2>Additional Flags</h2>
 <p>If you don't care about the output and just want to obtain the timings, you can use the <code>-o</code> option to redirect output to <code>/dev/null</code>. Additionally, the <code>-s</code> (silent mode) option disables the output of additional text like progress or error messages. So if you just want the timings without anything else, use the following example:</p>
 <div class="codehilite"><pre><span></span><code>curl<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-s<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;Total time: %{time_total}s\n&quot;</span><span class="w"> </span>https://httpbin.org/uuid
-</code></pre></div>
+</code></pre></div></main>
     </div>
   </body>
 </html>

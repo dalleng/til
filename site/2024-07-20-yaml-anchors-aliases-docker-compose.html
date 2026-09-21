@@ -14,8 +14,8 @@
         
   </head>
   <body>
-    <div class="container" style="margin-top: 20px">
-      <h1>Using YAML anchors and aliases in docker compose files</h1>
+    <div class="container">
+      <main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div><p class="note-meta">docker · <time datetime="2024-07-20">2024-07-20</time></p><h1>Using YAML anchors and aliases in docker compose files</h1>
 <p>In docker compose files you can use YAML anchors and aliases to avoid repetition. In the example below an anchor is defined using <code>&amp;</code>
 with an alias name, in this case <code>&amp;django</code>. The alias is then referenced in the <code>celeryworker</code> service definition, using <code>&lt;&lt;: *django</code>.</p>
 <p>The <code>&lt;&lt;:</code> override syntax allows for keys to be overriden. When there are repeated keys, the configuration specified directly within
@@ -41,7 +41,7 @@ the service will take precedence over the values inherited from the anchor.</p>
 <span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python -m celery -A config worker -l info</span>
 </code></pre></div>
 
-<p><a href="https://docs.docker.com/compose/compose-file/10-fragments/">Docs</a></p>
+<p><a href="https://docs.docker.com/compose/compose-file/10-fragments/">Docs</a></p></main>
     </div>
   </body>
 </html>

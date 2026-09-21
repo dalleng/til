@@ -23,16 +23,9 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
     
-    - name: Detect changed files
-      id: changed_files
-      run: |
-        files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '\.md$' | tr '\n' ' ')
-        echo "files=$files"
-        echo "files=$files" >> "$GITHUB_OUTPUT"
-
-    - name: Run script
-      run: python site-gen/main.py --files ${{ steps.changed_files.outputs.files }}
-      if: steps.changed_files.outputs.files
+    # Rebuild every note so template and CSS changes reach existing pages too.
+    - name: Generate site
+      run: python site-gen/main.py
 
     - name: Commit and push changes
       run: |
@@ -41,4 +34,3 @@ jobs:
         git add .
         git commit -m "Automated commit by GitHub Actions" || echo "No changes to commit"
         git push
-      if: steps.changed_files.outputs.files
