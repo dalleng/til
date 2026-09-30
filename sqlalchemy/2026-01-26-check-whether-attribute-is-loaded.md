@@ -22,5 +22,6 @@ engine = create_engine(
 with Session(engine) as session:
     user = session.scalars(select(User)).one()
     print(inspect(user).unloaded)  # attributes that have not been loaded
+```
 
 [Source](https://docs.sqlalchemy.org/en/21/orm/mapping_styles.html#inspection-of-mapped-instances)
