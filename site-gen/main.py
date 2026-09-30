@@ -45,12 +45,18 @@ class TILNote:
 
     @property
     def title(self) -> str | None:
+        title = self.raw_title
+        if title is None:
+            return None
+        return re.sub(r"`([^`]*)`", r"<code>\1</code>", title) if "`" in title else title
+
+    @property
+    def raw_title(self) -> str | None:
         with open(self.source, "r") as file:
             for line in file:
                 # regex for lines starting with one or more '#', which would be titles
                 if match := re.match(r"^\#+\s*(.*)", line.strip()):
-                    title = match.group(1).strip()
-                    return re.sub(r"`([^`]*)`", r"<code>\1</code>", title) if "`" in title else title
+                    return match.group(1).strip()
         return None
 
     @property
@@ -122,20 +128,19 @@ def generate_html_files(markdown_files: list[str]):
         md.reset()
 
 
-def generate_search_index(markdown_files: list[str]) -> dict:
+def generate_search_index(tils: list[TILNote]) -> dict:
     snowball_stemmer = SnowballStemmer(language='english')
     index = defaultdict(set)
     terms = {}
-    for file in markdown_files:
-        note_id = hashlib.md5(file.encode("utf-8")).hexdigest()
-        with open(file, "r") as f:
-            content = f.read()
-            unmarked = unmark(content)
-            for word in re.findall(r"\w+", unmarked.lower()):
-                print(f"{word=}")
-                stem = snowball_stemmer.stem(word)
-                terms[word] = stem
-                index[stem].add(note_id)
+    for til in tils:
+        note_id = hashlib.md5(til.source.encode("utf-8")).hexdigest()
+        # Use the same heading shown in results, excluding the note body.
+        title = unmark(til.raw_title or "")
+        for word in re.findall(r"\w+", title.lower()):
+            print(f"{word=}")
+            stem = snowball_stemmer.stem(word)
+            terms[word] = stem
+            index[stem].add(note_id)
     return {
         "index": {stem: sorted(ids) for stem, ids in index.items()},
         "terms": terms,
@@ -175,7 +180,7 @@ def generate_index(markdown_files: list[str]):
     # copy 'base_styles.css' from ./site-gen to ./site
     shutil.copy(INPUT_FOLDER / INDEX_CSS, OUTPUT_FOLDER)
     shutil.copy(INPUT_FOLDER / "index.js", OUTPUT_FOLDER)
-    search_index = json.dumps(generate_search_index(markdown_files))
+    search_index = json.dumps(generate_search_index(tils))
     head_content = f"""
     <link rel="stylesheet" href="site/{TIL_CSS}" />
     <link rel="stylesheet" href="site/{INDEX_CSS}" />
