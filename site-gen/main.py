@@ -1,12 +1,17 @@
 import argparse
+import hashlib
+import json
 import os
 import re
 import shutil
+from collections import defaultdict
 from dataclasses import dataclass
 from glob import glob
 from pathlib import Path
 
+from nltk import SnowballStemmer
 from pygments.formatters import HtmlFormatter
+from utils import unmark
 
 import markdown
 
@@ -117,18 +122,37 @@ def generate_html_files(markdown_files: list[str]):
         md.reset()
 
 
+def generate_search_index(markdown_files: list[str]) -> dict:
+    snowball_stemmer = SnowballStemmer(language='english')
+    index = defaultdict(set)
+    terms = {}
+    for file in markdown_files:
+        with open(file, "r") as f:
+            content = f.read()
+            unmarked = unmark(content)
+            for word in re.findall(r"\w+", unmarked.lower()):
+                stem = snowball_stemmer.stem(word)
+                terms[word] = stem
+                index[stem].add(hashlib.md5(file.encode("utf-8")).hexdigest())
+    return {
+        "index": {stem: sorted(ids) for stem, ids in index.items()},
+        "terms": terms,
+    }
+
+
 def generate_index(markdown_files: list[str]):
     # Generate index.html
     tils = [TILNote(mf) for mf in markdown_files]
     tils.sort(reverse=True)
-    list_template = Template('<ul class="notes">{list_content}</ul>')
+    list_template = Template('<ul class="notes" id="notes">{list_content}</ul>')
     list_item_template = Template(
-        '<li data-category="{category}"><span class="tag">{category}</span><a href="{url}">{title}</a><time datetime="{created_at}">{created_at}</time></li>'
+        '<li data-category="{category}" id="{id}"><span class="tag">{category}</span><a href="{url}">{title}</a><time datetime="{created_at}">{created_at}</time></li>'
     )
     list_content = "\n".join(
         [
             list_item_template.render(
                 {
+                    "id": hashlib.md5(til.source.encode("utf-8")).hexdigest(),
                     "url": til.url,
                     "title": til.title,
                     "created_at": til.created_at,
@@ -149,10 +173,12 @@ def generate_index(markdown_files: list[str]):
     # copy 'base_styles.css' from ./site-gen to ./site
     shutil.copy(INPUT_FOLDER / INDEX_CSS, OUTPUT_FOLDER)
     shutil.copy(INPUT_FOLDER / "index.js", OUTPUT_FOLDER)
+    search_index = json.dumps(generate_search_index(markdown_files))
     head_content = f"""
     <link rel="stylesheet" href="site/{TIL_CSS}" />
     <link rel="stylesheet" href="site/{INDEX_CSS}" />
     <script src="site/{INDEX_JS}"></script>
+    <script id="searchIndex" type="application/json">{search_index}</script>
     """
 
     Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE).write_to_file(

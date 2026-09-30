@@ -1,52 +1,78 @@
-function filterByCategory(category) {
-    // Get all li elements
-    const items = document.querySelectorAll('li[data-category]');
-
-    // Loop through all li elements
-    items.forEach(item => {
-        // Check if the data-category of the item matches the category parameter
-        if (item.getAttribute('data-category') === category || category === 'all') {
-            // If it matches, ensure the item is visible
-            item.style.display = '';
-        } else {
-            // If it does not match, hide the item
-            item.style.display = 'none';
-        }
-    });
-}
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Use native buttons so filtering also works with the keyboard.
-    const tags = document.querySelectorAll('.filters button.tag');
+    const search = document.getElementById('search');
+    const searchData = document.getElementById('searchIndex');
 
-    // Add click event listener to each tag
-    tags.forEach(tag => {
-        tag.addEventListener('click', function() {
-            // Remove the 'active' class from all tags in the section
-            tags.forEach(t => {
-                t.classList.remove('active');
-                t.setAttribute('aria-pressed', 'false');
+    if (search && searchData) {
+        const { index, terms } = JSON.parse(searchData.textContent);
+        const items = document.querySelectorAll('.notes li[data-category]');
+        const tags = document.querySelectorAll('.filters button.tag');
+        const status = document.getElementById('search-status');
+        let category = 'all';
+
+        function filterNotes() {
+            /*
+             * Split the search text into words, treating punctuation and whitespace as separators:
+             *
+             * - \p{L} — any Unicode letter, including accented letters.
+             * - \p{N} — any Unicode number.
+             * - _ — underscores are included in words.
+             * - [...]+ — matches one or more of those characters.
+             * - g — finds every match.
+             * - u — enables Unicode matching, required for \p{…}.
+             *
+             * For example, applying this to "Python, café foo_bar".toLowerCase() produces:
+             * ["python", "café", "foo_bar"]
+             *
+             * .match() returns null if nothing matches, so || [] provides an empty array.
+             */
+            const query = search.value.toLowerCase().match(/[\p{L}\p{N}_]+/gu) || [];
+            const matches = new Set();
+            for (const term of query) {
+                // Resolve words seen in the notes to their build-time Snowball stems.
+                const stem = Object.hasOwn(terms, term) ? terms[term] : term;
+                if (Object.hasOwn(index, stem)) {
+                    index[stem].forEach(id => matches.add(id));
+                }
+            }
+
+            let count = 0;
+            items.forEach(item => {
+                const matchesCategory = category === 'all' || item.dataset.category === category;
+                const matchesSearch = query.length === 0 || matches.has(item.id);
+                item.hidden = !(matchesCategory && matchesSearch);
+                if (!item.hidden) count++;
             });
-            
-            // Add the 'active' class to the clicked tag
-            this.classList.add('active');
-            this.setAttribute('aria-pressed', 'true');
-            filterByCategory(this.innerText);
-        });
-    });
+            status.textContent = count === 0 ? 'No notes match your search.'
+                : `${count} ${count === 1 ? 'note' : 'notes'}`;
+        }
 
-    document.addEventListener("keypress", (event) => {
-        const baseURL = "https://github.dev/dalleng/til"
+        search.addEventListener('input', filterNotes);
+        tags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                category = this.textContent.trim();
+                tags.forEach(t => {
+                    const active = t === this;
+                    t.classList.toggle('active', active);
+                    t.setAttribute('aria-pressed', String(active));
+                });
+                filterNotes();
+            });
+        });
+        filterNotes();
+    }
+
+    document.addEventListener('keypress', (event) => {
+        if (event.key !== '.') {
+            return;
+        }
+        const baseURL = 'https://github.dev/dalleng/til';
         let goToURL = baseURL;
-        if (window.location.pathname.startsWith("/site")) {
-            const category = document.querySelector("meta[name='category']").content;
+        const category = document.querySelector("meta[name='category']")?.content;
+        if (category) {
             const htmlPath = window.location.pathname.split('/').at(-1);
-            const [title, _] = htmlPath.split('.');
-            const filePath = `/blob/main/${category}/${title}.md`;
-            goToURL = baseURL + filePath;
+            const title = htmlPath.replace(/\.html$/, '');
+            goToURL = `${baseURL}/blob/main/${category}/${title}.md`;
         }
-        if (event.key === '.') {
-            window.location = goToURL;
-        }
+        window.location = goToURL;
     });
 });
