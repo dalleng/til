@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (search && searchData) {
         const { index, terms } = JSON.parse(searchData.textContent);
+        const vocabulary = Object.entries(terms);
         const items = document.querySelectorAll('.notes li[data-category]');
         const tags = document.querySelectorAll('.filters button.tag');
         const status = document.getElementById('search-status');
@@ -27,12 +28,23 @@ document.addEventListener('DOMContentLoaded', function() {
              */
             const query = search.value.toLowerCase().match(/[\p{L}\p{N}_]+/gu) || [];
             const matches = new Set();
+            const matchingStems = new Set();
             for (const term of query) {
                 // Resolve words seen in the notes to their build-time Snowball stems.
                 const stem = Object.hasOwn(terms, term) ? terms[term] : term;
                 if (Object.hasOwn(index, stem)) {
-                    index[stem].forEach(id => matches.add(id));
+                    matchingStems.add(stem);
                 }
+                // Find prefixes of at least three characters in the original words,
+                // then combine their stem groups with the whole-word matches.
+                if ([...term].length >= 3) {
+                    for (const [word, wordStem] of vocabulary) {
+                        if (word.startsWith(term)) matchingStems.add(wordStem);
+                    }
+                }
+            }
+            for (const stem of matchingStems) {
+                index[stem].forEach(id => matches.add(id));
             }
 
             let count = 0;

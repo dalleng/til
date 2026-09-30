@@ -127,13 +127,15 @@ def generate_search_index(markdown_files: list[str]) -> dict:
     index = defaultdict(set)
     terms = {}
     for file in markdown_files:
+        note_id = hashlib.md5(file.encode("utf-8")).hexdigest()
         with open(file, "r") as f:
             content = f.read()
             unmarked = unmark(content)
             for word in re.findall(r"\w+", unmarked.lower()):
+                print(f"{word=}")
                 stem = snowball_stemmer.stem(word)
                 terms[word] = stem
-                index[stem].add(hashlib.md5(file.encode("utf-8")).hexdigest())
+                index[stem].add(note_id)
     return {
         "index": {stem: sorted(ids) for stem, ids in index.items()},
         "terms": terms,
