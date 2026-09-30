@@ -1,13 +1,14 @@
-import re
 import argparse
-from dataclasses import dataclass
-import shutil
-import markdown
 import os
+import re
+import shutil
+from dataclasses import dataclass
 from glob import glob
 from pathlib import Path
+
 from pygments.formatters import HtmlFormatter
 
+import markdown
 
 ROOT_DIR = Path().parent
 INPUT_FOLDER = ROOT_DIR / "site-gen"
@@ -107,11 +108,11 @@ def generate_html_files(markdown_files: list[str]):
         <script src="{INDEX_JS}"></script>
         '''
         template.write_to_file(
-            output_filename, dict(head_content=head_content, body_content=(
+            output_filename, {"head_content": head_content, "body_content": (
                 '<main class="note"><div class="note-nav"><a href="../index.html">← All notes</a></div>'
                 f'<p class="note-meta">{til.category} · <time datetime="{til.created_at}">{til.created_at}</time></p>'
                 f'{html}</main>'
-            ))
+            )}
         )
         md.reset()
 
@@ -127,22 +128,22 @@ def generate_index(markdown_files: list[str]):
     list_content = "\n".join(
         [
             list_item_template.render(
-                dict(
-                    url=til.url,
-                    title=til.title,
-                    created_at=til.created_at,
-                    category=til.category,
-                )
+                {
+                    "url": til.url,
+                    "title": til.title,
+                    "created_at": til.created_at,
+                    "category": til.category,
+                }
             )
             for til in tils
         ]
     )
     category_template = Template('<button type="button" class="tag" aria-pressed="false">{category}</button>')
     categories = list({til.category for til in tils})
-    categories_content = ' '.join(category_template.render(dict(category=category)) for category in sorted(categories))
-    main_content = list_template.render(dict(list_content=list_content))
+    categories_content = ' '.join(category_template.render({"category": category}) for category in sorted(categories))
+    main_content = list_template.render({"list_content": list_content})
     body_content = Template.from_file(INPUT_FOLDER / INDEX_TEMPLATE).render(
-        data=dict(main_content=main_content, categories_content=categories_content)
+        data={"main_content": main_content, "categories_content": categories_content}
     )
 
     # copy 'base_styles.css' from ./site-gen to ./site
@@ -156,7 +157,7 @@ def generate_index(markdown_files: list[str]):
 
     Template.from_file(INPUT_FOLDER / BASE_HTML_TEMPLATE).write_to_file(
         ROOT_DIR / "index.html",
-        dict(head_content=head_content, body_content=body_content),
+        {"head_content": head_content, "body_content": body_content},
     )
 
 
@@ -176,7 +177,6 @@ def main():
         os.mkdir(output_filepath)
     except FileExistsError:
         print("Output folder alredy exists")
-        pass
 
     generate_css("default", OUTPUT_FOLDER / SYNTAX_HIGHLIGHTING_CSS)
     all_markdown_files = [f for f in glob("**/*.md", recursive=True) if f not in IGNORE_FILES]
