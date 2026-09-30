@@ -3,6 +3,14 @@ header h1 { margin-bottom: 0.5rem; }
 header p { color: var(--pico-muted-color); margin-bottom: 0.5rem; }
 header > a { font-size: 0.8rem; }
 
+#search {
+  max-width: 24rem;
+  height: 2.25rem;
+  padding-block: 0.35rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
 .filters { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 2rem; }
 .filters .tag {
   width: auto;
@@ -19,6 +27,8 @@ header > a { font-size: 0.8rem; }
 .filters .tag.active { background: var(--pico-primary-background); border-color: var(--pico-primary-background); color: var(--pico-primary-inverse); }
 
 .notes { padding: 0; }
+.notes li[hidden] { display: none; }
+#search-status { color: var(--pico-muted-color); font-size: 0.85rem; }
 .notes li {
   list-style: none;
   display: grid;
